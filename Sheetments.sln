@@ -5,6 +5,10 @@ VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sheetments", "Sheetments\Sheetments.csproj", "{C034CDE1-FFB5-47EB-A3A8-E9BA8584DFF4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.Infrastructure", "src\Tourist.Infrastructure\Tourist.Infrastructure.csproj", "{FB706DF9-88D3-4A7F-B506-50690DF912DE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.Domain", "src\Tourist.Domain\Tourist.Domain.csproj", "{0F080201-0443-4C59-9475-374468AC7579}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{C034CDE1-FFB5-47EB-A3A8-E9BA8584DFF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C034CDE1-FFB5-47EB-A3A8-E9BA8584DFF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C034CDE1-FFB5-47EB-A3A8-E9BA8584DFF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB706DF9-88D3-4A7F-B506-50690DF912DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB706DF9-88D3-4A7F-B506-50690DF912DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB706DF9-88D3-4A7F-B506-50690DF912DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB706DF9-88D3-4A7F-B506-50690DF912DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0F080201-0443-4C59-9475-374468AC7579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0F080201-0443-4C59-9475-374468AC7579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0F080201-0443-4C59-9475-374468AC7579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0F080201-0443-4C59-9475-374468AC7579}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
