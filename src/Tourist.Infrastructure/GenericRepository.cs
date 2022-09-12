@@ -1,25 +1,31 @@
 using SQLite;
+using Tourist.Domain;
 
 namespace Tourist.Infrastructure;
-public class GenericRepository
+public class GenericRepository<T> : IGenericRepository<T>
 {
-    readonly SQLiteAsyncConnection database;
+    readonly SQLiteAsyncConnection _database;
 
     public GenericRepository()
     {
-        var connectionString = "Data Source=AppData/TouristServices.db;Version=3;";
-        database = new SQLiteAsyncConnection(connectionString);
-        database.CreateTableAsync<Customer>().Wait();
-        database.CreateTableAsync<ItemLedger>().Wait();
-        database.CreateTableAsync<Package>().Wait();
-        database.CreateTableAsync<ShipmentItem>().Wait();
+        var connectionString = "Data Source=TouristServices.db;Version=3;";
+        _database = new SQLiteAsyncConnection(connectionString);
+        _database.CreateTableAsync<Customer>().Wait();
+        _database.CreateTableAsync<ItemLedger>().Wait();
+        _database.CreateTableAsync<Package>().Wait();
+        _database.CreateTableAsync<ShippmentItem>().Wait();
     }
- 
-    // public T Insert<T>(T model)
-    // {
-    //     int iRes = Context.Insert(model);
-    //     return model;
-    // }
+
+    public T Insert(T model)
+    {
+       _database.InsertAsync(model);
+        return model;
+    }
+
+    public void Dispose()
+    {
+        _database.CloseAsync();
+    }
  
     // public T Update<T>(T model)
     // {

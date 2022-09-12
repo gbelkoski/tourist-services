@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Tourist.Domain;
+﻿namespace Tourist.Domain;
 public class ShippmentItem
 {
     public int Id { get; set; }
