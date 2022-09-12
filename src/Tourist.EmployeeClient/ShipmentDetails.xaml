@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tourist.EmployeeClient.ShipmentDetails"
+             Title="Детали за испратница">
+    <VerticalStackLayout>
+        <Label 
+            Text="Баркод:"
+            FontSize="26"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Entry
+            Text="{Binding Barcode}"
+            FontSize="26"
+            MaxLength="8"
+            Keyboard="Numeric"/>
+        <ListView x:Name="lineItemsList"
+                  ItemsSource="{Binding ShipmentItems}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="{Binding TypeString}"
+                                   Grid.Column="0"
+                                   FontSize="46"
+                                   Padding="20,0,0,0"/>
+                            <Label Text="{Binding Weight}"
+                                   Grid.Column="1"
+                                   FontSize="46"
+                                   Padding="20,0,0,0"/>
+                            <Button Text="Бриши"
+                                    Grid.Column="2"
+                                    TextColor="Red"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>

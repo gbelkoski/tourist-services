@@ -1,10 +1,9 @@
-﻿using SQLite;
+using SQLite;
 
 namespace Tourist.Domain;
-public class Customer
+public class Item
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
     public string Name { get; set; }
-    public string Address { get; set; }
 }
