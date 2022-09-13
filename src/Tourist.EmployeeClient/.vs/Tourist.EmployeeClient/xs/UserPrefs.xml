@@ -1,0 +1,30 @@
+﻿<Properties StartupConfiguration="{702FBA88-63C1-495B-9906-691087569DF3}|Default">
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Tourist.EmployeeClient PreferredExecutionTarget="MyAppleMacCatalystID" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="ShipmentDetails.xaml.cs">
+    <Files>
+      <File FileName="ShipmentDetails.xaml.cs" Line="10" Column="77" />
+      <File FileName="ShipmentDetails.xaml" Line="8" Column="16" />
+      <File FileName="ShipmentsDelivered.xaml" Line="6" Column="48" />
+      <File FileName="CustomerPicker.xaml.cs" Line="24" Column="35" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Tourist.EmployeeClient" expanded="True">
+            <Node name="Tourist.EmployeeClient" expanded="True">
+              <Node name="CustomerPicker.xaml" expanded="True" />
+              <Node name="ShipmentDetails.xaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <Xamarin.Addins.Core.Project ActiveDebugTarget="MyAppleMacCatalystID" />
+</Properties>
