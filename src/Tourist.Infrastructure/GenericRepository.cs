@@ -10,9 +10,10 @@ public class GenericRepository<T> : IGenericRepository<T>
     {
         var connectionString = "TouristServices.db";
         _database = new SQLiteAsyncConnection(connectionString);
-        if(!_database.TableMappings.Any(c=>c.TableName=="Cusutomer"))
+        if(!_database.TableMappings.Any(c=>c.TableName=="Customer"))
             _database.CreateTableAsync<Customer>().Wait();
-        //_database.CreateTableAsync<ShippmentLineItem>().Wait();
+        if(!_database.TableMappings.Any(c=>c.TableName=="ShipmentLineItem"))
+            _database.CreateTableAsync<ShipmentLineItem>().Wait();
     }
 
     public T Insert(T model)
@@ -32,11 +33,11 @@ public class GenericRepository<T> : IGenericRepository<T>
     //     return model;
     // }
  
-    // public bool Delete<T>(T model)
-    // {
-    //     int iRes = Context.Delete(model);
-    //     return iRes.Equals(1);
-    // }
+    public async Task<bool> Delete<T>(object id)
+    {
+        int iRes = await _database.DeleteAsync<T>(id);
+        return iRes.Equals(1);
+    }
  
     // public T Select<T>(int pk) where T : new()
     // {
@@ -49,9 +50,9 @@ public class GenericRepository<T> : IGenericRepository<T>
     //     Context.Table<People>().ToArray();
     // }
  
-    // public T[] SelectAll<T>() where T : new()
-    // {
-    //     return new TableQuery<T>(Context).ToArray();
-    // }
-
+    public async Task<List<T>> SelectAll<T>() where T : new()
+    {
+        //return new TableQuery<T>(Context).ToArray();
+        return await _database.QueryAsync<T>(string.Empty);
+    }
 }

@@ -3,8 +3,8 @@
 namespace Tourist.Domain;
 public class Customer
 {
-    [PrimaryKey, AutoIncrement]
-    public int Id { get; set; }
+    [PrimaryKey]
+    public Guid Id { get; set; }
     public string Name { get; set; }
     public string Address { get; set; }
 }

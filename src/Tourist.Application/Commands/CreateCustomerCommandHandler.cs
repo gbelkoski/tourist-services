@@ -1,4 +1,3 @@
-//using FluentValidation;
 using Tourist.Infrastructure;
 using Tourist.Domain;
 
@@ -16,12 +15,12 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
     // {
     //     public CreateCustomerCommandValidator()
     //     {
-    //         // RuleFor(x => x).CommandNotNullValidation();
-    //         // When(x => x != null, () =>
-    //         // {
-    //         //     RuleFor(x => x.NotificationId).IdNotEmptyValidation();
-    //         //     RuleFor(x => x.Username).UsernameNotEmptyValidation();
-    //         // });
+    //         RuleFor(x => x).CommandNotNullValidation();
+    //         When(x => x != null, () =>
+    //         {
+    //             RuleFor(x => x.Id).IdNotEmptyValidation();
+    //             RuleFor(x => x.Name).UsernameNotEmptyValidation();
+    //         });
     //     }
     // }
         

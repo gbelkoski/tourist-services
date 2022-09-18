@@ -1,4 +1,5 @@
 using Tourist.Application.Commands;
+using Tourist.Application.Queries;
 using Tourist.Infrastructure;
 using Tourist.Domain;
 
@@ -11,12 +12,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddTransient<IGenericRepository<Customer>,GenericRepository<Customer>>();
+builder.Services.AddTransient<IGenericRepository<ShipmentLineItem>,GenericRepository<ShipmentLineItem>>();
 builder.Host.ConfigureServices((host, services) =>
 {
     services
         .Init()
         .AddCommandHandlers()
+        .AddQueryHandlers()
         .AddInMemoryCommandDispatcher()
+        .AddInMemoryQueryDispatcher()
         .Build();
 });
 
