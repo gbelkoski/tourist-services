@@ -8,10 +8,11 @@ public class GenericRepository<T> : IGenericRepository<T>
 
     public GenericRepository()
     {
-        var connectionString = "Data Source=TouristServices.db;Version=3;";
+        var connectionString = "TouristServices.db";
         _database = new SQLiteAsyncConnection(connectionString);
-        _database.CreateTableAsync<Customer>().Wait();
-        _database.CreateTableAsync<ShippmentLineItem>().Wait();
+        if(!_database.TableMappings.Any(c=>c.TableName=="Cusutomer"))
+            _database.CreateTableAsync<Customer>().Wait();
+        //_database.CreateTableAsync<ShippmentLineItem>().Wait();
     }
 
     public T Insert(T model)
