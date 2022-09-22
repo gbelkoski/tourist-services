@@ -2,12 +2,15 @@ using Tourist.Application.Commands;
 using Tourist.Application.Queries;
 using Tourist.Infrastructure;
 using Tourist.Domain;
+using System.Configuration;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
+builder.Services.AddDbContext<TouristDbContext>(options => options.UseSqlite("Data\\TouristServices.db"));
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

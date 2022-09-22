@@ -26,6 +26,11 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
         
     public async Task HandleAsync(CreateCustomerCommand command)
     {
-        _customerRepository.Insert(new Customer(){ Name = command.Name });
+        _customerRepository.Insert(new Customer()
+        {
+            Id = Guid.NewGuid(),
+            Name = command.Name, 
+            Address = command.Address 
+        });
     }
 }
