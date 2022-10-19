@@ -1,12 +1,15 @@
 using Tourist.Domain;
+using System.Data.SQLite;
 
 namespace Tourist.Infrastructure;
 public class GenericRepository<T> : IGenericRepository<T>
 {
+    private readonly SQLiteAsyncConnection _database;
     public GenericRepository()
     {
+        //var dbContext = new  TouristDbContext();
         // var connectionString = "TouristServices.db";
-        // _database = new SQLiteAsyncConnection(connectionString);
+        _database = new SQLiteAsyncConnection(connectionString);
         // if(!_database.TableMappings.Any(c=>c.TableName=="Customer"))
         //     _database.CreateTableAsync<Customer>().Wait();
         // if(!_database.TableMappings.Any(c=>c.TableName=="ShipmentLineItem"))
@@ -15,7 +18,8 @@ public class GenericRepository<T> : IGenericRepository<T>
 
     public T Insert(T model)
     {
-        throw new NotImplementedException();
+        //throw new NotImplementedException();
+        return model;
     }
 
     public void Dispose()
@@ -42,6 +46,6 @@ public class GenericRepository<T> : IGenericRepository<T>
  
     public async Task<List<T>> SelectAll<T>() where T : new()
     {
-        throw new NotImplementedException();
+        _database.SelectAlls<T>();
     }
 }
