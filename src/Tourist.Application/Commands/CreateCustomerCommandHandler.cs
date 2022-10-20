@@ -5,9 +5,10 @@ namespace Tourist.Application.Commands;
 
 public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommand>
 {
-    readonly IGenericRepository<Customer> _customerRepository;
+    //readonly IGenericRepository<Customer> _customerRepository;
+    readonly ICustomerRepository _customerRepository;
 
-    public CreateCustomerCommandHandler(IGenericRepository<Customer> customerRepository)
+    public CreateCustomerCommandHandler(ICustomerRepository customerRepository)//IGenericRepository<Customer> customerRepository)
     {
         _customerRepository = customerRepository;
     }

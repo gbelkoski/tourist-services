@@ -5,13 +5,13 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Tourist Api",
+            "name": "Tourist Web Api",
             "type": "coreclr",
             "request": "launch",
             "preLaunchTask": "build",
-            "program": "${workspaceFolder}/src/Tourist.Api/bin/Debug/net6.0/Tourist.Api.dll",
+            "program": "${workspaceFolder}/src/Tourist.Web.Api/bin/Debug/net6.0/Tourist.Web.Api.dll",
             "args": ["urls=http://localhost:5000"],
-            "cwd": "${workspaceFolder}/src/Tourist.Api",
+            "cwd": "${workspaceFolder}/src/Tourist.Web.Api",
             "stopAtEntry": false,
             "serverReadyAction": {
                 "action": "openExternally",

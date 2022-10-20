@@ -3,20 +3,26 @@ using Tourist.Application.Queries;
 using Tourist.Infrastructure;
 using Tourist.Domain;
 using System.Configuration;
-using Microsoft.EntityFrameworkCore;
+using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-//builder.Services.AddDbContext<TouristDbContext>(options => options.UseSqlite("Data\\TouristServices.db"));
+builder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "Data Source=Tourist.db" });
+builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
+builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddTransient<IGenericRepository<Customer>,GenericRepository<Customer>>();
-builder.Services.AddTransient<IGenericRepository<ShipmentLineItem>,GenericRepository<ShipmentLineItem>>();
+// TO DO: Move to extension method
+SqlMapper.AddTypeHandler(new DateTimeOffsetHandler());
+SqlMapper.AddTypeHandler(new GuidHandler());
+SqlMapper.AddTypeHandler(new TimeSpanHandler());
+
 builder.Host.ConfigureServices((host, services) =>
 {
     services
@@ -43,5 +49,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.Services.GetService<IDatabaseBootstrap>().Setup();
 
 app.Run();

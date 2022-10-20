@@ -8,4 +8,11 @@
   <ItemGroup>
     <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.10" />
+    <PackageReference Include="Dapper" Version="2.0.123" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Dapper" />
+  </ItemGroup>
 </Project>
