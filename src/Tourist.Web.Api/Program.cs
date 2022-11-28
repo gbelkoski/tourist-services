@@ -10,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 
 builder.Services.AddControllers();
+// TO DO: Use with options
 builder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "Data Source=Tourist.db" });
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();

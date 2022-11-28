@@ -18,10 +18,10 @@ public class ShipmentsController : ControllerBase
     }
 
     [HttpPost(Name = "Create")]
-    public async Task CreateShipmentLineItem()
+    public async Task CreateShipmentLineItem(string barcode)
     {
         // TO DO: Create new item to be shipped
-        //await _commandDispatcher.SendAsync(@command);
+        await _commandDispatcher.SendAsync(@command);
         throw new NotImplementedException();
     }
 
