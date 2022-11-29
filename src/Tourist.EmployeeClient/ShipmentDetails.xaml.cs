@@ -19,6 +19,10 @@ public partial class ShipmentDetails : ContentPage
     ObservableCollection<ShipmentItem> shipmentItems = new ObservableCollection<ShipmentItem>();
     public ObservableCollection<ShipmentItem> ShipmentItems { get { return shipmentItems; } }
 
+    void Barcode_TextChanged(System.Object sender, Microsoft.Maui.Controls.TextChangedEventArgs e)
+    {
+
+    }
 }
 
 

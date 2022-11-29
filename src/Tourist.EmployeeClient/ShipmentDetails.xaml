@@ -12,8 +12,9 @@
         <Entry
             Text="{Binding Barcode}"
             FontSize="26"
-            MaxLength="8"
-           />
+            MaxLength="13"
+            Keyboard="Numeric"
+            TextChanged="Barcode_TextChanged"/>
         <ListView x:Name="lineItemsList"
                   ItemsSource="{Binding ShipmentItems}">
             <ListView.ItemTemplate>
