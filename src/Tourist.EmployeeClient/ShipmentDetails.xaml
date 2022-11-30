@@ -34,7 +34,7 @@
                                    Grid.Column="1"
                                    FontSize="46"
                                    Padding="20,0,0,0"/>
-                            <Button Text="Бриши"
+                            <Button Text="Бриши" 
                                     Grid.Column="2"
                                     TextColor="Red"/>
                         </Grid>

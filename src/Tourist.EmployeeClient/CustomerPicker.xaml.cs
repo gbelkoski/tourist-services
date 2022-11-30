@@ -5,7 +5,9 @@ namespace Tourist.EmployeeClient;
 
 public partial class CustomerPicker : ContentPage, INotifyPropertyChanged
 {
-	public CustomerPicker()
+    readonly IQueryDispatcher _queryDispatcher;
+
+    public CustomerPicker(IQueryDispacher queryDispacher)
 	{
 		InitializeComponent();
 
@@ -13,6 +15,11 @@ public partial class CustomerPicker : ContentPage, INotifyPropertyChanged
 
 		Customers.Add(new Customer { Name = "cimer", Address = "kej Marshal tito" });
 		Customers.Add(new Customer { Name = "chuki", Address = "/" });
+		var result = _queryDispatcher.QueryAsync<IEnumerable<Customer>, CustomersQuery>(query);
+		foreach (var item in result)
+		{
+			Customers.Add(item);
+		}
 		customersList.ItemsSource = Customers;
     }
 

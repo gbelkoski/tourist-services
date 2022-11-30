@@ -4,6 +4,8 @@
              x:Class="Tourist.EmployeeClient.MainPage">
 
     <FlexLayout Direction="Row"
+                Margin="0,200,0,0"
+                Wrap="Wrap" 
                 AlignItems="Center"
                 JustifyContent="SpaceEvenly">
         <Button Text="Нова испратница"
