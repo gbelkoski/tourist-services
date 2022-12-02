@@ -1,8 +1,6 @@
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
 using Tourist.Infrastructure;
-using Tourist.Domain;
-using System.Configuration;
 using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);

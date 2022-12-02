@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
-
-namespace Tourist.Application.Initializers;
+﻿namespace Tourist.Application.Initializers;
 public class StartupInitializer : IStartupInitializer
 {
     private readonly IList<IInitializer> _initializers = new List<IInitializer>();

@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Threading.Tasks;
 
 namespace Tourist.Application.Commands;
 internal sealed class CommandDispatcher : ICommandDispatcher

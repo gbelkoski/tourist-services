@@ -1,6 +1,5 @@
 using Dapper;
 using Microsoft.Data.Sqlite;
-using System.Linq;
 
 namespace Tourist.Infrastructure;
 public interface IDatabaseBootstrap

@@ -1,5 +1,4 @@
 using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace Tourist.Application.Queries;
 public static class Extensions

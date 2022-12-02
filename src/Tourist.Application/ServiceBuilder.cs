@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Tourist.Application.Initializers;
+﻿using Tourist.Application.Initializers;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Tourist.Application;
@@ -27,22 +25,4 @@ public sealed class ServiceBuilder : IServiceBuilder
         _buildActions.ForEach(a => a(serviceProvider));
         return serviceProvider;
     }
-
-    public void AddBuildAction(Action<IServiceProvider> execute)
-        => _buildActions.Add(execute);
-
-    public void AddInitializer(IInitializer initializer)
-        => AddBuildAction(sp =>
-        {
-            var startupInitializer = sp.GetService<IStartupInitializer>();
-            startupInitializer.AddInitializer(initializer);
-        });
-
-    public void AddInitializer<TInitializer>() where TInitializer : IInitializer
-        => AddBuildAction(sp =>
-        {
-            var initializer = sp.GetService<TInitializer>();
-            var startupInitializer = sp.GetService<IStartupInitializer>();
-            startupInitializer.AddInitializer(initializer);
-        });
 }

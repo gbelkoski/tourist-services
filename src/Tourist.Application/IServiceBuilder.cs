@@ -1,6 +1,4 @@
-﻿using Tourist.Application.Initializers;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace Tourist.Application
 {
@@ -8,8 +6,5 @@ namespace Tourist.Application
     {
         IServiceCollection Services { get; }       
         IServiceProvider Build();
-        void AddBuildAction(Action<IServiceProvider> execute);
-        void AddInitializer(IInitializer initializer);
-        void AddInitializer<TInitializer>() where TInitializer : IInitializer;
     }
 }

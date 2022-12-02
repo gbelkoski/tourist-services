@@ -21,7 +21,6 @@ public class ShipmentsController : ControllerBase
     public async Task CreateShipmentLineItem(string barcode)
     {
         // TO DO: Create new item to be shipped
-        await _commandDispatcher.SendAsync(@command);
         throw new NotImplementedException();
     }
 
