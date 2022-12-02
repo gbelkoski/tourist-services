@@ -13,7 +13,7 @@
                 HeightRequest="200"
                 WidthRequest="350"
                 FontSize="26"
-                Clicked="btnNew_Clicked"/>
+                Clicked="btnNewShipment_Clicked"/>
         <Button Text="За испорака"
                 x:Name="btnPending"
                 HeightRequest="200"

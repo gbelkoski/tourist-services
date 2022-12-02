@@ -2,15 +2,16 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourist.ShipmentMobile.CustomerPickerPage"
+             xmlns:vm="clr-namespace:Tourist.ShipmentMobile.ViewModels"
              Title="Клиенти">
-    <ListView ItemsSource="{Binding Customers}" RowHeight="120" ItemTapped="customersList_ItemTapped">
+    <ListView ItemsSource="{Binding Customers}" x:Name="lstCustomers" RowHeight="120">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <!--For some reason binding the content does not work
                 <ViewCell>
                     <Label Text="{Binding Name}"/>
                 </ViewCell>-->
-                 <TextCell Text="{Binding Name}" />
+                 <TextCell Text="{Binding Name}"  Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:CustomerPickerViewModel}}}" CommandParameter="{Binding Id}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

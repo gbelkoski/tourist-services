@@ -9,10 +9,23 @@
     <ShellContent
         Title="Евиденција на испорака"
         ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Route="mainpage" >
+        <ShellContent Route="customerpicker"
+            Title="customer_picker"
+            ContentTemplate="{DataTemplate local:CustomerPickerPage}" >
+        </ShellContent>
+     </ShellContent>
 
-    <ShellContent Route="customerpicker"
-                Title="new"
-                ContentTemplate="{DataTemplate local:CustomerPickerPage}" />
+    <ShellContent Route="shipmentdetails"
+                Title="shipment_details"
+                ContentTemplate="{DataTemplate local:ShipmentDetailsPage}"/>
+
+     <ShellContent Route="shipmentspending"
+                Title="shipment_pending"
+                ContentTemplate="{DataTemplate local:ShipmentsPendingPage}"/>
+
+    <ShellContent Route="shipmentsdelivered"
+                Title="shipment_delivered"
+                ContentTemplate="{DataTemplate local:ShipmentsDeliveredPage}"/>
 
 </Shell>

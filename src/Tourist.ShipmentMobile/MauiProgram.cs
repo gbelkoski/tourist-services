@@ -44,10 +44,10 @@ public static class MauiProgram
 
     public static MauiAppBuilder RegisterViewModels(this MauiAppBuilder mauiAppBuilder)
 	{
-		//mauiAppBuilder.Services.AddSingleton<ViewModels.MainViewModel>();
-
 		mauiAppBuilder.Services.AddTransient<ViewModels.CustomerPickerViewModel>();
-		
+		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentDetailsViewModel>();
+		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentsPendingViewModel>();
+		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentsDeliveredViewModel>();
 
 		return mauiAppBuilder;
 	}
@@ -55,6 +55,9 @@ public static class MauiProgram
 	public static MauiAppBuilder RegisterViews(this MauiAppBuilder mauiAppBuilder)
 	{
 		mauiAppBuilder.Services.AddTransient<CustomerPickerPage>();
+		mauiAppBuilder.Services.AddTransient<ShipmentDetailsPage>();
+        mauiAppBuilder.Services.AddTransient<ShipmentsPendingPage>();
+        mauiAppBuilder.Services.AddTransient<ShipmentsDeliveredPage>();
 
 		return mauiAppBuilder;
 	}

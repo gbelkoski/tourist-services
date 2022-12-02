@@ -3,7 +3,7 @@ using System.ComponentModel;
 using Tourist.ShipmentMobile.ViewModels;
 
 namespace Tourist.ShipmentMobile;
-public partial class CustomerPickerPage : ContentPage, INotifyPropertyChanged
+public partial class CustomerPickerPage : ContentPage
 {
     public CustomerPickerPage(CustomerPickerViewModel viewModel)
 	{
@@ -11,11 +11,4 @@ public partial class CustomerPickerPage : ContentPage, INotifyPropertyChanged
 
 		InitializeComponent();
     }
-
-    void customersList_ItemTapped(System.Object sender, Microsoft.Maui.Controls.ItemTappedEventArgs e)
-    {
-		//Navigation.PushAsync(new ShipmentDetails(new Guid(), string.Empty));
-    }
 }
-
-
