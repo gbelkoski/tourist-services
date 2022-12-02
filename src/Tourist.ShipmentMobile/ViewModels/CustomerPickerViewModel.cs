@@ -4,7 +4,7 @@ using Tourist.Domain;
 using System.ComponentModel;
 
 namespace Tourist.ShipmentMobile.ViewModels;
-public class CustomerPickerViewModel : INotifyPropertyChanged
+public class CustomerPickerViewModel : BaseViewModel
 {
 	readonly ShipmentsDatabase _customerRepository;
     public CustomerPickerViewModel(ShipmentsDatabase customerRepository)
@@ -12,11 +12,6 @@ public class CustomerPickerViewModel : INotifyPropertyChanged
 		_customerRepository = customerRepository;
 
 		LoadData();
-		//foreach (var item in result)
-		//{
-		//	Customers.Add(item);
-		//}
-		//customersList.ItemsSource = Customers;
     }
 
     private ObservableCollection<CustomerModel> _customers;
@@ -33,6 +28,14 @@ public class CustomerPickerViewModel : INotifyPropertyChanged
 
     public async void LoadData()
     {
+        var result = await _customerRepository.GetItemsAsync();
+
+        Customers = new ObservableCollection<CustomerModel>();
+        result.ForEach(r => Customers.Add(new CustomerModel() { Name = r.Name }));
+    }
+
+    public async Task SaveCustomer()
+    {
         //Customer newCustomer = new Domain.Customer()
         //{
         //    Id = Guid.NewGuid(),
@@ -40,22 +43,10 @@ public class CustomerPickerViewModel : INotifyPropertyChanged
         //    Address = "/"
         //};
         //await _customerRepository.SaveItemAsync(newCustomer);
-
-        var result = await _customerRepository.GetItemsAsync();
-
-        Customers = new ObservableCollection<CustomerModel>();
-        result.ForEach(r => Customers.Add(new CustomerModel() { Name = r.Name }));
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    private void OnPropertyChanged(string propertyName)
-    {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 }
 
-public class CustomerModel : INotifyPropertyChanged
+public class CustomerModel : BaseViewModel
 {
     private string _name;
     public string Name
@@ -66,13 +57,5 @@ public class CustomerModel : INotifyPropertyChanged
             _name = value;
             OnPropertyChanged("Name");
         }
-    }
-
-    public event PropertyChangedEventHandler PropertyChanged;
-
-    private void OnPropertyChanged(string propertyName)
-    {
-        if (this.PropertyChanged != null)
-            this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
     }
 }
