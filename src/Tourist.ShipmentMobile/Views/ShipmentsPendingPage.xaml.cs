@@ -4,16 +4,11 @@ using Tourist.ShipmentMobile.ViewModels;
 
 namespace Tourist.ShipmentMobile;
 
-public partial class ShipmentsPending : ContentPage
+public partial class ShipmentsPendingPage : ContentPage
 {
-	public ShipmentsPending(ShipmentsPendingViewModel viewModel)
+	public ShipmentsPendingPage(ShipmentsPendingViewModel viewModel)
 	{
         this.BindingContext = viewModel;
 		InitializeComponent();
     }
-}
-
-public class Shipment
-{
-    public string CustomerName { get; set; }
 }
