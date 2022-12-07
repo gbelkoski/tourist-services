@@ -8,24 +8,23 @@
 
     <ShellContent
         Title="Евиденција на испорака"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="mainpage" >
-        <ShellContent Route="customerpicker"
+        Route="mainpage"
+        ContentTemplate="{DataTemplate local:MainPage}">
+        <ShellContent
             Title="customer_picker"
+            Route="customerpicker"
             ContentTemplate="{DataTemplate local:CustomerPickerPage}" >
         </ShellContent>
      </ShellContent>
 
-    <ShellContent Route="shipmentdetails"
-                Title="shipment_details"
-                ContentTemplate="{DataTemplate local:ShipmentDetailsPage}"/>
+     <ShellContent 
+        Title="shipment_delivered"
+        Route="shipmentsdelivered"
+        ContentTemplate="{DataTemplate local:ShipmentsDeliveredPage}"/>
 
-     <ShellContent Route="shipmentspending"
-                Title="shipment_pending"
-                ContentTemplate="{DataTemplate local:ShipmentsPendingPage}"/>
-
-    <ShellContent Route="shipmentsdelivered"
-                Title="shipment_delivered"
-                ContentTemplate="{DataTemplate local:ShipmentsDeliveredPage}"/>
+     <ShellContent 
+        Title="shipment_pending"
+        Route="shipmentspending"
+        ContentTemplate="{DataTemplate local:ShipmentsPendingPage}"/>
 
 </Shell>

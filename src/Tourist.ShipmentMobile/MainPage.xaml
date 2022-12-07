@@ -4,7 +4,7 @@
              x:Class="Tourist.ShipmentMobile.MainPage">
 
     <FlexLayout Direction="Row"
-                Margin="0,200,0,0"
+                Margin="0,20,0,0"
                 Wrap="Wrap" 
                 AlignItems="Center"
                 JustifyContent="SpaceEvenly">

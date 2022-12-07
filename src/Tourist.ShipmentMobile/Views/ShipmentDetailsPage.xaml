@@ -4,19 +4,29 @@
              x:Class="Tourist.ShipmentMobile.ShipmentDetailsPage"
              Title="Детали за испратница">
     <VerticalStackLayout>
-        <Label 
-            Text="Баркод:"
-            FontSize="26"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-        <Entry
+        <Grid Margin="0,30,0,30">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="200" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Label Text="Клиент: " HorizontalTextAlignment="End" FontSize="Medium"/>
+            <Label Text="{Binding SelectedCustomerName}" Grid.Column="1" Padding="20,0,0,0"  FontSize="Medium"/>
+            <Label Text="Бр. испратница: " Grid.Row="1" HorizontalTextAlignment="End" FontSize="Medium"/>
+            <Label Text="{Binding ShipmentNo}" Grid.Column="1" Grid.Row="1" Padding="20,0,0,0" FontSize="Medium"/>
+        </Grid>
+        <Entry Placeholder="Баркод"
             Text="{Binding Barcode}"
             FontSize="26"
             MaxLength="13"
             Keyboard="Numeric"
-            TextChanged="Barcode_TextChanged"/>
+            ReturnCommand="{Binding BarcodeEnteredCommand}"
+            />
         <ListView x:Name="lineItemsList"
-                  ItemsSource="{Binding ShipmentItems}">
+                  ItemsSource="{Binding ShipmentItems}" Margin="0,30,0,30">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
@@ -26,13 +36,13 @@
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
-                            <Label Text="{Binding TypeString}"
+                            <Label Text="{Binding ItemName}"
                                    Grid.Column="0"
-                                   FontSize="46"
+                                   FontSize="26"
                                    Padding="20,0,0,0"/>
                             <Label Text="{Binding Weight}"
                                    Grid.Column="1"
-                                   FontSize="46"
+                                   FontSize="26"
                                    Padding="20,0,0,0"/>
                             <Button Text="Бриши" 
                                     Grid.Column="2"
@@ -42,5 +52,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <Button Text="Печати испратница" HorizontalOptions="FillAndExpand"/>
     </VerticalStackLayout>
 </ContentPage>

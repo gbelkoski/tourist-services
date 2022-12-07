@@ -17,43 +17,115 @@ public class ShipmentsDatabase
             return;
 
         Database = new SQLiteAsyncConnection(Constants.DatabasePath, Constants.Flags);
-        var result = await Database.CreateTableAsync<Customer>();
+        //var customerTableInfo = await Database.GetTableInfoAsync("Customer");
+        //if(!customerTableInfo.Any())
+        //{
+         var result = await Database.CreateTablesAsync<Customer,ShipmentLineItem,Item>();
+        //}
+        //var shipmentTableInfo = await Database.GetTableInfoAsync("ShipmentLineItem");
+        //if (!shipmentTableInfo.Any())
+        //{
+        //    var result = await Database.CreateTableAsync<ShipmentLineItem>();
+        //}
+        //SeedData();
     }
 
-    public async Task<List<Customer>> GetItemsAsync()
+    public async Task SeedData()
+    {
+        var customers  = await Database.Table<Customer>().ToListAsync();
+        if(!customers.Any())
+        {
+            Customer newCustomer = new Domain.Customer()
+            {
+                Id = 200007,
+                Name = "Инекс Олгица",
+                Address = "/"
+            };
+            await SaveCustomerAsync(newCustomer);
+            Item item1 = new Item()
+            {
+                Id = 1,
+                Name = "Крпи"
+            };
+            Item item2 = new Item()
+            {
+                Id = 2,
+                Name = "Постелнини"
+            };
+            await SaveItemAsync(item1);
+            await SaveItemAsync(item2);
+
+            var shipmentLineItems = await Database.Table<ShipmentLineItem>().ToListAsync();
+            if (!shipmentLineItems.Any())
+            {
+                ShipmentLineItem shipmentItem = new Domain.ShipmentLineItem()
+                {
+                    Barcode = "0101010101332",
+                    CustomerId = newCustomer.Id,
+                    ItemId = 1,
+                    ShipmentNo = "1",
+                    Weight = (decimal)3.2
+                };
+                await SaveShipmentLineItemAsync(shipmentItem);
+            }
+        }
+    }
+
+    public async Task<List<Customer>> GetCustomersAsync()
     {
         await Init();
+        await SeedData();
         return await Database.Table<Customer>().ToListAsync();
     }
 
-    public async Task<List<Customer>> GetItemsNotDoneAsync()
+    public async Task<List<ShipmentLineItem>> GetActiveShipmentAsync(int customerId)
     {
-        throw new NotImplementedException();
-        //await Init();
-        //return await Database.Table<Customer>().Where(t => t.Done).ToListAsync();
+        return await Database.Table<ShipmentLineItem>().Where(s => s.CustomerId == customerId && s.DateShipped == null).ToListAsync();
 
         // SQL queries are also possible
-        //return await Database.QueryAsync<Customer>("SELECT * FROM [TodoItem] WHERE [Done] = 0");
+        //return await Database.QueryAsync<Customer>("SELECT * FROM [ShipmentLineItem] WHERE [DateShipped] is null");
     }
 
-    public async Task<Customer> GetItemAsync(Guid id)
+    public async Task<ShipmentLineItem> GetLatestShipedItemAsync(int customerId)
     {
-        await Init();
+        return await Database.Table<ShipmentLineItem>()
+                        .Where(s => s.CustomerId == customerId && s.DateShipped != null)
+                        .OrderByDescending(s=>s.DateShipped).FirstOrDefaultAsync();
+    }
+
+    public async Task<Customer> GetCustomerAsync(int id)
+    {
         return await Database.Table<Customer>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<int> SaveItemAsync(Customer item)
+    public async Task<Item> GetItemAsync(int id)
     {
-        await Init();
+        return await Database.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<int> SaveCustomerAsync(Customer item)
+    {
         //if (item.Id ==)
         //    return await Database.UpdateAsync(item);
         //else
             return await Database.InsertAsync(item);
     }
 
-    public async Task<int> DeleteItemAsync(Customer item)
+    public async Task<int> SaveItemAsync(Item item)
     {
-        await Init();
+        return await Database.InsertAsync(item);
+    }
+
+    public async Task<int> SaveShipmentLineItemAsync(ShipmentLineItem item)
+    {
+        //if (item.Id ==)
+        //    return await Database.UpdateAsync(item);
+        //else
+        return await Database.InsertAsync(item);
+    }
+
+    public async Task<int> DeleteCustomerAsync(Customer item)
+    {
         return await Database.DeleteAsync(item);
     }
 }

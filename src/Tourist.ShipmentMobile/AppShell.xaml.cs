@@ -14,6 +14,7 @@ public partial class AppShell : Shell
     void RegisterRoutes()
     {
         Routes.Add("customerpicker", typeof(CustomerPickerPage));
+        Routes.Add("shipmentdetails", typeof(ShipmentDetailsPage));
 
         foreach (var item in Routes)
         {

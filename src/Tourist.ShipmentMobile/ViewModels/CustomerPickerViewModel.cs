@@ -7,16 +7,17 @@ using System.Windows.Input;
 namespace Tourist.ShipmentMobile.ViewModels;
 public class CustomerPickerViewModel : BaseViewModel
 {
-	readonly ShipmentsDatabase _customerRepository;
+	readonly ShipmentsDatabase _dataRepository;
 
-    public CustomerPickerViewModel(ShipmentsDatabase customerRepository)
+    public CustomerPickerViewModel(ShipmentsDatabase dataRepository)
     {
-		_customerRepository = customerRepository;
-        CustomerSelectedCommand = new Command<Guid>(
-        execute: (a) =>
-        {
-            Shell.Current.GoToAsync("//shipmentdetails");
-        });
+        _dataRepository = dataRepository;
+        CustomerSelectedCommand = new Command<CustomerModel>(
+            execute: (a) =>
+            {
+                //Shell.Current.GoToAsync("//shipmentdetails");
+                Shell.Current.GoToAsync($"//mainpage/customerpicker/shipmentdetails?customerId={a.Id}&customerName={a.Name}");
+            });
         LoadData();
     }
 
@@ -35,7 +36,7 @@ public class CustomerPickerViewModel : BaseViewModel
 
     public async void LoadData()
     {
-        var result = await _customerRepository.GetItemsAsync();
+        var result = await _dataRepository.GetCustomersAsync();
 
         Customers = new ObservableCollection<CustomerModel>();
         result.ForEach(r => Customers.Add(
@@ -50,18 +51,18 @@ public class CustomerPickerViewModel : BaseViewModel
     {
         Customer newCustomer = new Domain.Customer()
         {
-            Id = Guid.NewGuid(),
+            Id = 200007,
             Name = "Инекс Олгица",
             Address = "/"
         };
-        await _customerRepository.SaveItemAsync(newCustomer);
+        await _dataRepository.SaveCustomerAsync(newCustomer);
     }
 }
 
 public class CustomerModel : BaseViewModel
 {
-    private Guid _id;
-    public Guid Id
+    private int _id;
+    public int Id
     {
         get { return _id; }
         set
