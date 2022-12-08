@@ -11,7 +11,7 @@
                 <ViewCell>
                     <Label Text="{Binding Name}"/>
                 </ViewCell>-->
-                 <TextCell Text="{Binding Name}"  Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:CustomerPickerViewModel}}}" CommandParameter="{Binding .}"/>
+                 <TextCell Text="{Binding Name}" Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:CustomerPickerViewModel}}}" CommandParameter="{Binding .}"/>
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

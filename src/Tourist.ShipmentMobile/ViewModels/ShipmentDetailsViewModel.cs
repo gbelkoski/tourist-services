@@ -11,7 +11,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
     public ShipmentDetailsViewModel(ShipmentsDatabase dataRepository)
 	{
         _dataRepository = dataRepository;
-            BarcodeEnteredCommand = new Command(
+        BarcodeEnteredCommand = new Command(
             execute: async () =>
             {
                 var itemId = GetItemId(Barcode);
@@ -22,7 +22,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                     // Invalid, show popup
                 }
 
-                await _dataRepository.SaveShipmentLineItemAsync(new Domain.ShipmentLineItem()
+                var newLineItemId = await _dataRepository.SaveShipmentLineItemAsync(new Domain.ShipmentLineItem()
                 {
                     Barcode = Barcode,
                     ShipmentNo = ShipmentNo,
@@ -33,15 +33,36 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                 });
                 ShipmentItems.Add(new ShipmentItemModel()
                 {
+                    Id = newLineItemId,
                     DateCreated = DateTime.Now,
                     ItemName = (await _dataRepository.GetItemAsync(itemId)).Name,
                     Weight = weight
                 });
                 Barcode = string.Empty;
             });
+
+        DeleteLineItemCommand = new Command(
+            execute: async (li) =>
+            {
+                var lineItemModel = li as ShipmentItemModel;
+                var lineItemDb = await _dataRepository.GetShipmentLineItemAsync(lineItemModel.Id);
+                await _dataRepository.DeleteShipmentLineItemAsync(lineItemDb);
+                ShipmentItems.Remove(lineItemModel);
+            });
+
+        PrintShipmentCommand = new Command(
+            execute: async () =>
+            {
+                await _dataRepository.MarkAsShippedAsync(SelectedCustomerId);
+                ShipmentItems.Clear(); 
+            });
     }
 
     public ICommand BarcodeEnteredCommand { private set; get; }
+
+    public ICommand DeleteLineItemCommand { private set; get; }
+
+    public ICommand PrintShipmentCommand { private set; get; }
 
     ObservableCollection<ShipmentItemModel> _shipmentItems;
     public ObservableCollection<ShipmentItemModel> ShipmentItems
@@ -66,6 +87,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
     }
 
     public int SelectedCustomerId { get; set; }
+
     private string _selectedCustomerName;
     public string SelectedCustomerName
     {
@@ -90,7 +112,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         SelectedCustomerId = int.Parse(query["customerId"].ToString());
-        SelectedCustomerName = query["customerName"].ToString();
+        SelectedCustomerName = (await _dataRepository.GetCustomerAsync(SelectedCustomerId)).Name; //query["customerName"].ToString();
 
         var activeShipmentItems = await _dataRepository.GetActiveShipmentAsync(SelectedCustomerId);
         ShipmentItems = new ObservableCollection<ShipmentItemModel>();
@@ -99,6 +121,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
             activeShipmentItems.ForEach(async s => ShipmentItems.Add(
                 new ShipmentItemModel()
                 {
+                    Id = s.Id,
                     DateCreated = s.DateCreated,
                     ItemName = (await _dataRepository.GetItemAsync(s.ItemId)).Name,
                     Weight = s.Weight
@@ -145,6 +168,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
 
 public class ShipmentItemModel
 {
+    public int Id { get; set; }
     public DateTime DateCreated { get; set; }
     public string ItemName { get; set; }
     public decimal Weight { get; set; }

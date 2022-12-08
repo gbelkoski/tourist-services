@@ -15,8 +15,7 @@ public class CustomerPickerViewModel : BaseViewModel
         CustomerSelectedCommand = new Command<CustomerModel>(
             execute: (a) =>
             {
-                //Shell.Current.GoToAsync("//shipmentdetails");
-                Shell.Current.GoToAsync($"//mainpage/customerpicker/shipmentdetails?customerId={a.Id}&customerName={a.Name}");
+                Shell.Current.GoToAsync($"//mainpage/customerpicker/shipmentdetails?customerId={a.Id}");
             });
         LoadData();
     }
@@ -45,17 +44,6 @@ public class CustomerPickerViewModel : BaseViewModel
                 Id = r.Id,
                 Name = r.Name
             }));
-    }
-
-    public async Task SaveCustomer()
-    {
-        Customer newCustomer = new Domain.Customer()
-        {
-            Id = 200007,
-            Name = "Инекс Олгица",
-            Address = "/"
-        };
-        await _dataRepository.SaveCustomerAsync(newCustomer);
     }
 }
 

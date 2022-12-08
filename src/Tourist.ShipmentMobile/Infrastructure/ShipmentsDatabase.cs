@@ -103,6 +103,11 @@ public class ShipmentsDatabase
         return await Database.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
+    public async Task<ShipmentLineItem> GetShipmentLineItemAsync(int id)
+    {
+        return await Database.Table<ShipmentLineItem>().Where(i => i.Id == id).FirstOrDefaultAsync();
+    }
+
     public async Task<int> SaveCustomerAsync(Customer item)
     {
         //if (item.Id ==)
@@ -124,7 +129,17 @@ public class ShipmentsDatabase
         return await Database.InsertAsync(item);
     }
 
+    public async Task<int> MarkAsShippedAsync(int customerId)
+    {
+        return await Database.ExecuteAsync("UPDATE [ShipmentLineItem] SET [DateShipped] = ? WHERE [DateShipped] is null and [CustomerId] = ?", DateTime.Now, customerId);
+    }
+
     public async Task<int> DeleteCustomerAsync(Customer item)
+    {
+        return await Database.DeleteAsync(item);
+    }
+
+    public async Task<int> DeleteShipmentLineItemAsync(ShipmentLineItem item)
     {
         return await Database.DeleteAsync(item);
     }
