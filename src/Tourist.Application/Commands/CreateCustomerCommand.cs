@@ -25,7 +25,6 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
     {
         _customerRepository.Insert(new Customer()
         {
-            Id = Guid.NewGuid(),
             Name = command.Name, 
             Address = command.Address 
         });

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net7.0-android;net7.0-maccatalyst</TargetFrameworks>
 		<TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net7.0-windows10.0.19041.0</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net7.0-tizen</TargetFrameworks> -->
@@ -78,5 +78,16 @@
 	  <MauiXaml Update="Views\ShipmentsPending.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <None Include="Views\CustomerPickerPage.xaml" />
+	  <None Include="Views\ShipmentDetailsPage.xaml" />
+	  <None Include="Views\ShipmentsDeliveredPage.xaml" />
+	  <None Include="App.xaml" />
+	  <None Include="AppShell.xaml" />
+	  <None Include="MainPage.xaml" />
+	  <None Include="Views\ShipmentsDeliveredPage.xaml" />
+	  <None Include="Views\CustomerPickerPage.xaml" />
+	  <None Include="Views\ShipmentDetailsPage.xaml" />
 	</ItemGroup>
 </Project>

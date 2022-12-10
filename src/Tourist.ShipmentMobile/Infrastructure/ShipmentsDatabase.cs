@@ -81,9 +81,12 @@ public class ShipmentsDatabase
     public async Task<List<ShipmentLineItem>> GetActiveShipmentAsync(int customerId)
     {
         return await Database.Table<ShipmentLineItem>().Where(s => s.CustomerId == customerId && s.DateShipped == null).ToListAsync();
+    }
 
-        // SQL queries are also possible
-        //return await Database.QueryAsync<Customer>("SELECT * FROM [ShipmentLineItem] WHERE [DateShipped] is null");
+    public async Task<List<ShipmentLineItem>> GetDeliveredShipmentsAsync()
+    {
+        await Init();
+        return await Database.QueryAsync<ShipmentLineItem>("SELECT * FROM [ShipmentLineItem] WHERE [DateShipped] is not null ORDER BY [DateShipped] desc");
     }
 
     public async Task<ShipmentLineItem> GetLatestShipedItemAsync(int customerId)

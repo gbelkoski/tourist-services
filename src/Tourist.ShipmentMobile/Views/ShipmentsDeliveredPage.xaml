@@ -3,13 +3,14 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourist.ShipmentMobile.ShipmentsDeliveredPage"
              Title="Испорачани">
-    <ListView x:Name="shipmentList" ItemsSource="{Binding ShipmentItems}" RowHeight="100">
+    <ListView ItemsSource="{Binding Shipments}" RowHeight="100">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <HorizontalStackLayout>
-                        <Label Text="{Binding DateDelivered}" FontSize="46" Padding="20,0,0,0"/>
-                        <Label Text="{Binding CustomerName}" FontSize="46" Padding="20,0,0,0"/>
+                    <HorizontalStackLayout VerticalOptions="Center">
+                        <Label Text="{Binding ShipmentNo}" FontSize="26" Padding="20,0,0,0"/>
+                        <Label Text="{Binding DateShipped, StringFormat='{}{0:dd.MM.yyyy hh:mm}'}"  FontSize="26" Padding="20,0,0,0"/>
+                        <Label Text="{Binding CustomerName}" FontSize="26" Padding="20,0,0,0"/>
                     </HorizontalStackLayout>
                 </ViewCell>
             </DataTemplate>

@@ -17,14 +17,4 @@
         </ShellContent>
      </ShellContent>
 
-     <ShellContent 
-        Title="shipment_delivered"
-        Route="shipmentsdelivered"
-        ContentTemplate="{DataTemplate local:ShipmentsDeliveredPage}"/>
-
-     <ShellContent 
-        Title="shipment_pending"
-        Route="shipmentspending"
-        ContentTemplate="{DataTemplate local:ShipmentsPendingPage}"/>
-
 </Shell>

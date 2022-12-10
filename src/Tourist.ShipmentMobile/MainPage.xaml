@@ -14,18 +14,18 @@
                 WidthRequest="350"
                 FontSize="26"
                 Clicked="btnNewShipment_Clicked"/>
-        <Button Text="За испорака"
-                x:Name="btnPending"
-                HeightRequest="200"
-                WidthRequest="350"
-                FontSize="26"
-                Clicked="btnPending_Clicked"/>
         <Button Text="Испорачани"
                 x:Name="btnDelivered"
                 HeightRequest="200"
                 WidthRequest="350"
                 FontSize="26"
                 Clicked="btnDelivered_Clicked"/>
+        <Button Text="Администрација"
+                x:Name="btnAdmin"
+                HeightRequest="200"
+                WidthRequest="350"
+                FontSize="26"
+                Clicked="btnAdmin_Clicked"/>
     </FlexLayout>
 
 </ContentPage>

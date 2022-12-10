@@ -7,10 +7,6 @@
     <ListView ItemsSource="{Binding Customers}" x:Name="lstCustomers" RowHeight="120">
         <ListView.ItemTemplate>
             <DataTemplate>
-                <!--For some reason binding the content does not work
-                <ViewCell>
-                    <Label Text="{Binding Name}"/>
-                </ViewCell>-->
                  <TextCell Text="{Binding Name}" Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:CustomerPickerViewModel}}}" CommandParameter="{Binding .}"/>
             </DataTemplate>
         </ListView.ItemTemplate>

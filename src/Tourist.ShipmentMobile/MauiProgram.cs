@@ -18,13 +18,6 @@ public static class MauiProgram
 			.RegisterViewModels()
             .RegisterViews();
 
-		//builder.Services
-		//.Init()
-		//.AddCommandHandlers()
-		//.AddQueryHandlers()
-		//.AddInMemoryCommandDispatcher()
-		//.AddInMemoryQueryDispatcher();
-
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
@@ -35,9 +28,6 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<ShipmentsDatabase>();
-        //mauiAppBuilder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "Data Source=Tourist.db" });
-        //mauiAppBuilder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
-        //mauiAppBuilder.Services.AddTransient<ICustomerRepository,CustomerRepository>();
 
         return mauiAppBuilder;
     }
@@ -46,7 +36,6 @@ public static class MauiProgram
 	{
 		mauiAppBuilder.Services.AddTransient<ViewModels.CustomerPickerViewModel>();
 		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentDetailsViewModel>();
-		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentsPendingViewModel>();
 		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentsDeliveredViewModel>();
 
 		return mauiAppBuilder;
@@ -56,7 +45,6 @@ public static class MauiProgram
 	{
 		mauiAppBuilder.Services.AddTransient<CustomerPickerPage>();
 		mauiAppBuilder.Services.AddTransient<ShipmentDetailsPage>();
-        mauiAppBuilder.Services.AddTransient<ShipmentsPendingPage>();
         mauiAppBuilder.Services.AddTransient<ShipmentsDeliveredPage>();
 
 		return mauiAppBuilder;

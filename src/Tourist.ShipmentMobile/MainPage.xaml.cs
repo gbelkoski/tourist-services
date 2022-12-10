@@ -12,13 +12,13 @@ public partial class MainPage : ContentPage
 		await Shell.Current.GoToAsync("//mainpage//customerpicker");
     }
 
-    async void btnPending_Clicked(System.Object sender, System.EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//mainpage//shipmentspending");
-    }
-
     async void btnDelivered_Clicked(System.Object sender, System.EventArgs e)
     {
         await Shell.Current.GoToAsync("//mainpage//shipmentsdelivered");
+    }
+
+    async void btnAdmin_Clicked(System.Object sender, System.EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//mainpage//admin");
     }
 }
