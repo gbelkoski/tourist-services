@@ -14,12 +14,32 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
         BarcodeEnteredCommand = new Command(
             execute: async () =>
             {
+                if(Barcode.Length!=13)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Грешка", "Невалиден формат на баркод.", "OK");
+                    return;
+                }
                 var itemId = GetItemId(Barcode);
                 var weight = GetWeight(Barcode);
                 var customerId = GetCustomerId(Barcode);
                 if(customerId != SelectedCustomerId)
                 {
-                    // Invalid, show popup
+                    await Application.Current.MainPage.DisplayAlert("Грешка", "Шифрата не се совпаѓа со избраниот клиент.", "OK");
+                    return;
+                }
+
+                var item = await _dataRepository.GetItemAsync(itemId);
+                if(item == null)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Грешка", "Артиклот/услугата не постои.", "OK");
+                    return;
+                }
+
+                var customer = await _dataRepository.GetCustomerAsync(customerId);
+                if(customer == null)
+                {
+                    await Application.Current.MainPage.DisplayAlert("Грешка", "Клиентот не постои.", "OK");
+                    return;
                 }
 
                 var newLineItemId = await _dataRepository.SaveShipmentLineItemAsync(new Domain.ShipmentLineItem()
@@ -35,7 +55,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                 {
                     Id = newLineItemId,
                     DateCreated = DateTime.Now,
-                    ItemName = (await _dataRepository.GetItemAsync(itemId)).Name,
+                    ItemName = item.Name,
                     Weight = weight
                 });
                 Barcode = string.Empty;
