@@ -17,6 +17,14 @@ public partial class AppShell : Shell
         Routes.Add("shipmentdetails", typeof(ShipmentDetailsPage));
         Routes.Add("shipmentsdelivered", typeof(ShipmentsDeliveredPage));
 
+        // Admin section
+        Routes.Add("passwordprompt", typeof(PasswordPromptPage));
+        Routes.Add("adminmenu", typeof(AdminMenuPage));
+        Routes.Add("managecustomers", typeof(ManageCustomersPage));
+        Routes.Add("addeditcustomer", typeof(AddEditCustomerPage));
+        Routes.Add("manageitems", typeof(ManageItemsPage));
+        Routes.Add("addedititem", typeof(AddEditItemPage));
+
         foreach (var item in Routes)
         {
             Routing.RegisterRoute(item.Key, item.Value);

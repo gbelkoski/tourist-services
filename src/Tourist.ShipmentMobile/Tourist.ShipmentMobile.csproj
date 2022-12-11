@@ -57,10 +57,12 @@
 	<ItemGroup>
 	  <None Remove="Infrastructure\" />
 	  <None Remove="Views\" />
+	  <None Remove="Views\Admin\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Infrastructure\" />
 	  <Folder Include="Views\" />
+	  <Folder Include="Views\Admin\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />
@@ -89,5 +91,12 @@
 	  <None Include="Views\ShipmentsDeliveredPage.xaml" />
 	  <None Include="Views\CustomerPickerPage.xaml" />
 	  <None Include="Views\ShipmentDetailsPage.xaml" />
+	  <None Include="Views\Admin\AdminMenuPage.xaml" />
+	  <None Include="Views\Admin\PasswordPromptPage.xaml" />
+	  <None Include="Views\Admin\ManageCustomersPage.xaml" />
+	  <None Include="Views\Admin\ManageItemsPage.xaml" />
+	  <None Include="MainPage.xaml" />
+	  <None Include="Views\Admin\AddEditCustomerPage.xaml" />
+	  <None Include="Views\Admin\AddEditItemPage.xaml" />
 	</ItemGroup>
 </Project>

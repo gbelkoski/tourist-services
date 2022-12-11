@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tourist.ShipmentMobile.ManageCustomersPage"
+             xmlns:vm="clr-namespace:Tourist.ShipmentMobile.ViewModels"
+             Title="Клиeнти">
+
+    <VerticalStackLayout Spacing="30">
+        <Button Text="Нов клиент" Command="{Binding NewCustomerCommand}" />
+        <ListView ItemsSource="{Binding Customers}" x:Name="lstCustomers" RowHeight="120">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:ManageCustomersViewModel}}}" CommandParameter="{Binding .}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+
+</ContentPage>

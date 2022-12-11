@@ -19,6 +19,6 @@ public partial class MainPage : ContentPage
 
     async void btnAdmin_Clicked(System.Object sender, System.EventArgs e)
     {
-        await Shell.Current.GoToAsync("//mainpage//admin");
+        await Shell.Current.GoToAsync("//mainpage//passwordprompt");
     }
 }

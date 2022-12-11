@@ -78,6 +78,12 @@ public class ShipmentsDatabase
         return await Database.Table<Customer>().ToListAsync();
     }
 
+    public async Task<List<Item>> GetItemsAsync()
+    {
+        await Init();
+        return await Database.Table<Item>().ToListAsync();
+    }
+
     public async Task<List<ShipmentLineItem>> GetActiveShipmentAsync(int customerId)
     {
         return await Database.Table<ShipmentLineItem>().Where(s => s.CustomerId == customerId && s.DateShipped == null).ToListAsync();
@@ -113,15 +119,22 @@ public class ShipmentsDatabase
 
     public async Task<int> SaveCustomerAsync(Customer item)
     {
-        //if (item.Id ==)
-        //    return await Database.UpdateAsync(item);
-        //else
-            return await Database.InsertAsync(item);
+        return await Database.InsertAsync(item);
+    }
+
+    public async Task<int> UpdateCustomerAsync(Customer item)
+    {
+        return await Database.UpdateAsync(item);
     }
 
     public async Task<int> SaveItemAsync(Item item)
     {
         return await Database.InsertAsync(item);
+    }
+
+    public async Task<int> UpdateItemAsync(Item item)
+    {
+        return await Database.UpdateAsync(item);
     }
 
     public async Task<int> SaveShipmentLineItemAsync(ShipmentLineItem item)

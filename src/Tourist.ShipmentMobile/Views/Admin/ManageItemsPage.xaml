@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Tourist.ShipmentMobile.ManageItemsPage"
+             xmlns:vm="clr-namespace:Tourist.ShipmentMobile.ViewModels"
+             Title="Услуги/артикли">
+
+    <VerticalStackLayout Spacing="30">
+        <Button Text="Нов артикл/услуга" Command="{Binding NewItemCommand}" />
+        <ListView ItemsSource="{Binding Items}" x:Name="lstItems" RowHeight="120">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding Name}" Command="{Binding Path = ItemSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:ManageItemsViewModel}}}" CommandParameter="{Binding .}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </VerticalStackLayout>
+</ContentPage>
