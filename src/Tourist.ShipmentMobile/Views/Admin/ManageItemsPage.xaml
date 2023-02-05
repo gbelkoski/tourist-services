@@ -5,7 +5,7 @@
              xmlns:vm="clr-namespace:Tourist.ShipmentMobile.ViewModels"
              Title="Услуги/артикли">
 
-    <VerticalStackLayout Spacing="30">
+    <VerticalStackLayout Spacing="30" Margin="10">
         <Button Text="Нов артикл/услуга" Command="{Binding NewItemCommand}" />
         <ListView ItemsSource="{Binding Items}" x:Name="lstItems" RowHeight="120">
             <ListView.ItemTemplate>

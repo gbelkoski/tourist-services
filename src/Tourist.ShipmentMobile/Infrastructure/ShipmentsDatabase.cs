@@ -89,10 +89,17 @@ public class ShipmentsDatabase
         return await Database.Table<ShipmentLineItem>().Where(s => s.CustomerId == customerId && s.DateShipped == null).ToListAsync();
     }
 
-    public async Task<List<ShipmentLineItem>> GetDeliveredShipmentsAsync()
+    public async Task<List<ShipmentDeliveredModel>> GetDeliveredShipmentsAsync()
     {
         await Init();
-        return await Database.QueryAsync<ShipmentLineItem>("SELECT * FROM [ShipmentLineItem] WHERE [DateShipped] is not null ORDER BY [DateShipped] desc");
+        return await Database.QueryAsync<ShipmentDeliveredModel>(@"
+            SELECT  [ShipmentLineItem].[ShipmentNo],
+                    [ShipmentLineItem].[DateShipped],
+                    [Customer].[Name] as CustomerName
+            FROM [ShipmentLineItem]
+            INNER JOIN [Customer]
+            ON [ShipmentLineItem].[CustomerId] = [Customer].[Id]
+            WHERE [DateShipped] is not null ORDER BY [DateShipped] desc");
     }
 
     public async Task<ShipmentLineItem> GetLatestShipedItemAsync(int customerId)

@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourist.ShipmentMobile.AddEditItemPage"
              Title="Нов артикл/услуга">
-    <VerticalStackLayout Spacing="20">
+    <VerticalStackLayout Spacing="20" Margin="10">
         <Entry Placeholder="ID" x:Name="txtId" Text="{Binding Id}" MaxLength="2" IsEnabled="{Binding IsNew}"/>
         <Entry Placeholder="Име" x:Name="txtName" Text="{Binding Name}"/>
         <Button Text="Зачувај" Command="{Binding SaveItemCommand}" />

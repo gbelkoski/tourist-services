@@ -13,8 +13,8 @@ public class ShipmentsDeliveredViewModel : BaseViewModel
         LoadData();
     }
 
-    ObservableCollection<ShipmentModel> _shipments;
-    public ObservableCollection<ShipmentModel> Shipments
+    ObservableCollection<ShipmentDeliveredModel> _shipments;
+    public ObservableCollection<ShipmentDeliveredModel> Shipments
     {
         get { return _shipments; }
         set
@@ -30,14 +30,14 @@ public class ShipmentsDeliveredViewModel : BaseViewModel
         {
             var result = await _dataRepository.GetDeliveredShipmentsAsync();
 
-            Shipments = new ObservableCollection<ShipmentModel>();
-            var filtered = result.GroupBy(r => new { r.ShipmentNo, r.CustomerId, r.DateShipped })
+            Shipments = new ObservableCollection<ShipmentDeliveredModel>();
+            var filtered = result.GroupBy(r => new { r.ShipmentNo, r.CustomerName, r.DateShipped })
                   .Select(r =>
-                    new ShipmentModel()
+                    new ShipmentDeliveredModel()
                     {
                         ShipmentNo = r.Key.ShipmentNo,
-                        CustomerName = "Инекс олгица",// TO DO: Get from mapping table or join
-                        DateShipped = r.Key.DateShipped.Value
+                        CustomerName = r.Key.CustomerName,
+                        DateShipped = r.Key.DateShipped
                     }).ToList();
 
             filtered.ForEach(f => Shipments.Add(f));
@@ -47,11 +47,4 @@ public class ShipmentsDeliveredViewModel : BaseViewModel
 
         }
     }
-}
-
-public class ShipmentModel
-{
-    public string ShipmentNo { get; set; }
-    public DateTime DateShipped { get; set; }
-    public string CustomerName { get; set; }
 }

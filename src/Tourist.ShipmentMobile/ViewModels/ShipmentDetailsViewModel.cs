@@ -21,12 +21,6 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                 }
                 var itemId = GetItemId(Barcode);
                 var weight = GetWeight(Barcode);
-                var customerId = GetCustomerId(Barcode);
-                if(customerId != SelectedCustomerId)
-                {
-                    await Application.Current.MainPage.DisplayAlert("Грешка", "Шифрата не се совпаѓа со избраниот клиент.", "OK");
-                    return;
-                }
 
                 var item = await _dataRepository.GetItemAsync(itemId);
                 if(item == null)
@@ -35,7 +29,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                     return;
                 }
 
-                var customer = await _dataRepository.GetCustomerAsync(customerId);
+                var customer = await _dataRepository.GetCustomerAsync(SelectedCustomerId);
                 if(customer == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Грешка", "Клиентот не постои.", "OK");
@@ -46,7 +40,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                 {
                     Barcode = Barcode,
                     ShipmentNo = ShipmentNo,
-                    CustomerId = customerId,
+                    CustomerId = SelectedCustomerId,
                     ItemId = itemId,
                     DateCreated = DateTime.Now,
                     Weight = weight

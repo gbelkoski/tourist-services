@@ -10,4 +10,11 @@ public partial class ShipmentDetailsPage : ContentPage
         BindingContext = viewModel;
         InitializeComponent();
     }
+
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        txtBarcode.Focus();
+    }
 }

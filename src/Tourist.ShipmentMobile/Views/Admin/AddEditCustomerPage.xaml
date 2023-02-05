@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourist.ShipmentMobile.AddEditCustomerPage"
              Title="Нов клиент">
-    <VerticalStackLayout Spacing="20">
+    <VerticalStackLayout Spacing="20" Margin="10">
         <Entry Placeholder="ID" x:Name="txtId" IsEnabled="{Binding IsNew}" MaxLength="6" Text="{Binding Id}"/>
         <Entry Placeholder="Име" x:Name="txtName" Text="{Binding Name}"/>
         <Entry Placeholder="Адреса" x:Name="txtAddress" Text="{Binding Address}"/>
