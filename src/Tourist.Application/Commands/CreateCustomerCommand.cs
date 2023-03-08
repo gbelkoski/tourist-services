@@ -16,14 +16,14 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
 {
     readonly ICustomerRepository _customerRepository;
 
-    public CreateCustomerCommandHandler(ICustomerRepository customerRepository)//IGenericRepository<Customer> customerRepository)
+    public CreateCustomerCommandHandler(ICustomerRepository customerRepository)
     {
         _customerRepository = customerRepository;
     }
     
     public async Task HandleAsync(CreateCustomerCommand command)
     {
-        _customerRepository.Insert(new Customer()
+        await _customerRepository.Insert(new Customer()
         {
             Name = command.Name, 
             Address = command.Address 

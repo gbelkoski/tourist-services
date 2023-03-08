@@ -1,6 +1,5 @@
 using Tourist.Domain;
-using Dapper;
-using Microsoft.Data.Sqlite;
+using SQLite;
 
 namespace Tourist.Infrastructure;
 public class CustomerRepository : ICustomerRepository
@@ -14,24 +13,31 @@ public class CustomerRepository : ICustomerRepository
 
     public async Task<Customer> Insert(Customer model)
     {
-        using var connection = new SqliteConnection(_databaseConfig.ConnectionString);
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
 
-        await connection.ExecuteAsync("INSERT INTO Customer (Id, Name, Address)" +
-            "VALUES (@Id, @Name, @Address);", model);
+        await connection.InsertAsync(model);
         
         return model;
     }
     public async Task<List<Customer>> SelectAll()
     {
-        using var connection = new SqliteConnection(_databaseConfig.ConnectionString);
- 
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
+
         return (await connection.QueryAsync<Customer>("SELECT Name, Address FROM Customer;")).ToList();
     }
 
-    public async Task<Customer> SelectById(Guid id)
+    public async Task<Customer> SelectById(int id)
     {
-        using var connection = new SqliteConnection(_databaseConfig.ConnectionString);
- 
-        return await connection.QueryFirstAsync<Customer>("SELECT Name, Address FROM Customer WHERE Id = @Id;", id.ToString());
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
+        return await connection.Table<Customer>().Where(i => i.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<Customer> Update(Customer model)
+    {
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
+
+        await connection.UpdateAsync(model);
+
+        return model;
     }
 }

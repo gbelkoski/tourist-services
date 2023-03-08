@@ -61,11 +61,13 @@
 	  <None Remove="Infrastructure\" />
 	  <None Remove="Views\" />
 	  <None Remove="Views\Admin\" />
+	  <None Remove="Jobs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Infrastructure\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Views\Admin\" />
+	  <Folder Include="Jobs\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />

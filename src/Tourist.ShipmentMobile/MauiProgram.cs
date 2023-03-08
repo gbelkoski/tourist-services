@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.DependencyInjection;
 using Tourist.ShipmentMobile.Infrastructure;
+using Tourist.ShipmentMobile.Jobs;
 
 namespace Tourist.ShipmentMobile;
 public static class MauiProgram
@@ -28,6 +30,8 @@ public static class MauiProgram
     public static MauiAppBuilder RegisterServices(this MauiAppBuilder mauiAppBuilder)
     {
         mauiAppBuilder.Services.AddSingleton<ShipmentsDatabase>();
+		mauiAppBuilder.Services.AddSingleton<SyncDataJob>();
+		mauiAppBuilder.Services.AddTransient<TouristApiClient>();
 
         return mauiAppBuilder;
     }

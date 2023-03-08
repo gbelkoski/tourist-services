@@ -1,7 +1,6 @@
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
 using Tourist.Infrastructure;
-using Dapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -9,7 +8,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // TO DO: Use with options
-builder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "Data Source=Tourist.db" });
+builder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "AppData/Cleanex.db" });
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
 builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
 
@@ -18,9 +17,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 // TO DO: Move to extension method
-SqlMapper.AddTypeHandler(new DateTimeOffsetHandler());
-SqlMapper.AddTypeHandler(new GuidHandler());
-SqlMapper.AddTypeHandler(new TimeSpanHandler());
+//SqlMapper.AddTypeHandler(new DateTimeOffsetHandler());
+//SqlMapper.AddTypeHandler(new GuidHandler());
+//SqlMapper.AddTypeHandler(new TimeSpanHandler());
 
 builder.Host.ConfigureServices((host, services) =>
 {

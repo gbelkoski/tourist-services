@@ -9,10 +9,10 @@
     <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.Data.Sqlite" Version="6.0.10" />
-    <PackageReference Include="Dapper" Version="2.0.123" />
+    <None Remove="Dapper" />
+    <None Remove="sqlite-net-pcl" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Dapper" />
+    <PackageReference Include="sqlite-net-pcl" Version="1.8.116" />
   </ItemGroup>
 </Project>

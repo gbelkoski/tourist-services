@@ -1,7 +1,7 @@
 ﻿using SQLite;
 
 namespace Tourist.Domain;
-public class ShipmentLineItem
+public class ShipmentLineItem : ISyncEntity
 {
     [PrimaryKey, AutoIncrement]
     public int Id { get; set; }
@@ -13,4 +13,5 @@ public class ShipmentLineItem
     public int CustomerId { get; set; }
     public int ItemId { get; set; }
     public decimal Weight { get; set; }
+    public bool IsDirty { get; set; }
 }

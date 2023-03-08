@@ -1,6 +1,5 @@
 using Tourist.Domain;
-using Dapper;
-using Microsoft.Data.Sqlite;
+using SQLite;
 
 namespace Tourist.Infrastructure;
 public class ShipmentRepository : IShipmentRepository
@@ -14,7 +13,7 @@ public class ShipmentRepository : IShipmentRepository
 
     public async Task<ShipmentLineItem> Insert(ShipmentLineItem model)
     {
-        using var connection = new SqliteConnection(_databaseConfig.ConnectionString);
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
 
         await connection.ExecuteAsync("INSERT INTO ShipmentLineItem ()" +
             "VALUES ();", model);
@@ -24,14 +23,14 @@ public class ShipmentRepository : IShipmentRepository
     
     public async Task<List<ShipmentLineItem>> SelectActiveByCustomer(Guid customerId)
     {
-        using var connection = new SqliteConnection(_databaseConfig.ConnectionString);
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
  
         return (await connection.QueryAsync<ShipmentLineItem>("SELECT FROM ShipmentLineItem WHERE CustomerId  = @customerId;", customerId)).ToList();
     }
 
     public async Task<List<ShipmentLineItem>> SelectDelivered(string shipmentNo)
     {
-        using var connection = new SqliteConnection(_databaseConfig.ConnectionString);
+        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
  
         return (await connection.QueryAsync<ShipmentLineItem>("SELECT  FROM ShipmentLineItem WHERE Id = @Id;", shipmentNo)).ToList();
     }

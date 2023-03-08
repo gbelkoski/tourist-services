@@ -4,9 +4,9 @@ namespace Tourist.Infrastructure;
 public interface ICustomerRepository
 {
     Task<Customer> Insert(Customer model);        
-    // T Update<T>(T model);
+    Task<Customer> Update(Customer model);
     // Task<bool> Delete(Guid id);
     // T Select<T>(int pk) where T : new();
-    Task<Customer> SelectById(Guid id);
+    Task<Customer> SelectById(int id);
     Task<List<Customer>> SelectAll();
 }

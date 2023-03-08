@@ -11,7 +11,7 @@ public class ShipmentsDatabase
     {
     }
 
-    async Task Init()
+    public async Task Init()
     {
         if (Database is not null)
             return;
@@ -20,7 +20,7 @@ public class ShipmentsDatabase
         //var customerTableInfo = await Database.GetTableInfoAsync("Customer");
         //if(!customerTableInfo.Any())
         //{
-         var result = await Database.CreateTablesAsync<Customer,ShipmentLineItem,Item>();
+        var result = await Database.CreateTablesAsync<Customer, ShipmentLineItem, Item>();
         //}
         //var shipmentTableInfo = await Database.GetTableInfoAsync("ShipmentLineItem");
         //if (!shipmentTableInfo.Any())
@@ -32,8 +32,8 @@ public class ShipmentsDatabase
 
     public async Task SeedData()
     {
-        var customers  = await Database.Table<Customer>().ToListAsync();
-        if(!customers.Any())
+        var customers = await Database.Table<Customer>().ToListAsync();
+        if (!customers.Any())
         {
             Customer newCustomer = new Domain.Customer()
             {
@@ -78,15 +78,30 @@ public class ShipmentsDatabase
         return await Database.Table<Customer>().ToListAsync();
     }
 
+    public async Task<List<Customer>> GetDirtyCutomers()
+    {
+        return await Database.Table<Customer>().Where(i => i.IsDirty).ToListAsync();
+    }
+
     public async Task<List<Item>> GetItemsAsync()
     {
         await Init();
         return await Database.Table<Item>().ToListAsync();
     }
 
+    public async Task<List<Item>> GetDirtyItems()
+    {
+        return await Database.Table<Item>().Where(i => i.IsDirty).ToListAsync();
+    }
+
     public async Task<List<ShipmentLineItem>> GetActiveShipmentAsync(int customerId)
     {
         return await Database.Table<ShipmentLineItem>().Where(s => s.CustomerId == customerId && s.DateShipped == null).ToListAsync();
+    }
+
+    public async Task<List<ShipmentLineItem>> GetDirtyShipmentAsync()
+    {
+        return await Database.Table<ShipmentLineItem>().Where(s => s.IsDirty && s.DateShipped != null).ToListAsync();
     }
 
     public async Task<List<ShipmentDeliveredModel>> GetDeliveredShipmentsAsync()
@@ -106,7 +121,7 @@ public class ShipmentsDatabase
     {
         return await Database.Table<ShipmentLineItem>()
                         .Where(s => s.CustomerId == customerId && s.DateShipped != null)
-                        .OrderByDescending(s=>s.DateShipped).FirstOrDefaultAsync();
+                        .OrderByDescending(s => s.DateShipped).FirstOrDefaultAsync();
     }
 
     public async Task<Customer> GetCustomerAsync(int id)
@@ -126,44 +141,56 @@ public class ShipmentsDatabase
 
     public async Task<int> SaveCustomerAsync(Customer item)
     {
-        return await Database.InsertAsync(item);
+        return await Insert(item);
     }
 
     public async Task<int> UpdateCustomerAsync(Customer item)
     {
-        return await Database.UpdateAsync(item);
+        return await Update(item);
     }
 
     public async Task<int> SaveItemAsync(Item item)
     {
-        return await Database.InsertAsync(item);
+        return await Insert(item);
     }
 
     public async Task<int> UpdateItemAsync(Item item)
     {
-        return await Database.UpdateAsync(item);
+        return await Update(item);
     }
 
     public async Task<int> SaveShipmentLineItemAsync(ShipmentLineItem item)
     {
-        //if (item.Id ==)
-        //    return await Database.UpdateAsync(item);
-        //else
-        return await Database.InsertAsync(item);
+        return await Insert(item);
     }
 
     public async Task<int> MarkAsShippedAsync(int customerId)
     {
-        return await Database.ExecuteAsync("UPDATE [ShipmentLineItem] SET [DateShipped] = ? WHERE [DateShipped] is null and [CustomerId] = ?", DateTime.Now, customerId);
+        return await Database.ExecuteAsync("UPDATE [ShipmentLineItem] SET [DateShipped] = ?, IsDirty = 1 WHERE [DateShipped] is null and [CustomerId] = ?", DateTime.Now, customerId);
     }
 
     public async Task<int> DeleteCustomerAsync(Customer item)
     {
+        item.IsDeleted = true;
+        item.IsDirty = true;
         return await Database.DeleteAsync(item);
     }
 
     public async Task<int> DeleteShipmentLineItemAsync(ShipmentLineItem item)
     {
+        // TO DO: how to sync hard delete items? immediate server call?
         return await Database.DeleteAsync(item);
+    }
+
+    async Task<int> Insert(ISyncEntity entity)
+    {
+        entity.IsDirty = true;
+        return await Database.InsertAsync(entity);
+    }
+
+    async Task<int> Update(ISyncEntity entity)
+    {
+        entity.IsDirty = true;
+        return await Database.UpdateAsync(entity);
     }
 }

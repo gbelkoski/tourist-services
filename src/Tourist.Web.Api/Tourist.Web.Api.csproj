@@ -15,4 +15,10 @@
     <ProjectReference Include="..\Tourist.Application\Tourist.Application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="AppData\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="AppData\" />
+  </ItemGroup>
 </Project>

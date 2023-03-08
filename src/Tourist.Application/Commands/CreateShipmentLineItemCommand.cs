@@ -9,7 +9,7 @@ public class CreateShipmentLineItemCommand : ICommand
     [JsonPropertyName("Barcode")]
     public string Barcode { get; set; }
 
-    public Guid CustomerId { get; set; }
+    public int CustomerId { get; set; }
 }
 
 public class CreateShipmentLineItemCommandHandler : ICommandHandler<CreateShipmentLineItemCommand>
