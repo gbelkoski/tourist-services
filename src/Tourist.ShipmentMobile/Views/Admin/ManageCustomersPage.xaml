@@ -7,7 +7,7 @@
 
     <VerticalStackLayout Spacing="30" Margin="10">
         <Button Text="Нов клиент" Command="{Binding NewCustomerCommand}" />
-        <ListView ItemsSource="{Binding Customers}" x:Name="lstCustomers" RowHeight="120">
+        <ListView ItemsSource="{Binding Customers}" x:Name="lstCustomers" RowHeight="120" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshCustomersCommand}" IsRefreshing="{Binding IsRefreshing}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:ManageCustomersViewModel}}}" CommandParameter="{Binding .}"/>

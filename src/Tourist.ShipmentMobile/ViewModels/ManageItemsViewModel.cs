@@ -23,6 +23,14 @@ public class ManageItemsViewModel : BaseViewModel
             {
                 Shell.Current.GoToAsync($"//mainpage/adminmenu/manageitems/addedititem?itemId=-1");
             });
+
+        RefreshItemsCommand = new Command(
+            execute: () =>
+            {
+                LoadData();
+            });
+
+        Items = new ObservableCollection<Item>();
         LoadData();
     }
 
@@ -41,10 +49,14 @@ public class ManageItemsViewModel : BaseViewModel
 
     public ICommand ItemSelectedCommand { private set; get; }
 
+    public ICommand RefreshItemsCommand { private set; get; }
+
     public async void LoadData()
     {
+        IsRefreshing = true;
+        Items.Clear();
         var result = await _dataRepository.GetItemsAsync();
-
-        Items = new ObservableCollection<Item>(result);
+        result.ForEach(r => Items.Add(r));
+        IsRefreshing = false;
     }
 }

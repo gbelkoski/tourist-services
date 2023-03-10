@@ -1,5 +1,6 @@
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
+using Tourist.Domain;
 using Tourist.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,7 +11,8 @@ builder.Services.AddControllers();
 // TO DO: Use with options
 builder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "AppData/Cleanex.db" });
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
-builder.Services.AddTransient<ICustomerRepository, CustomerRepository>();
+builder.Services.AddTransient<IGenericRepository<Customer>, CustomerRepository>();
+builder.Services.AddTransient<IGenericRepository<Item>, ItemRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
@@ -42,7 +44,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
+//app.UseHttpsRedirection();
 
 app.UseAuthorization();
 

@@ -2,7 +2,7 @@ using Tourist.Domain;
 using SQLite;
 
 namespace Tourist.Infrastructure;
-public class CustomerRepository : ICustomerRepository
+public class CustomerRepository : IGenericRepository<Customer>
 {
     readonly DatabaseConfig _databaseConfig;
 

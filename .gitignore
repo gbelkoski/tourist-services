@@ -134,3 +134,4 @@ _NCrunch*
 .vs/*
 src/Tourist.Web.Api/Tourist.db
 src/Tourist.Web.Api/TouristServices.db
+src/Tourist.Web.Api/AppData/Cleanex.db

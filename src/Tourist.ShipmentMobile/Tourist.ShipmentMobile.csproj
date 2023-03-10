@@ -62,12 +62,15 @@
 	  <None Remove="Views\" />
 	  <None Remove="Views\Admin\" />
 	  <None Remove="Jobs\" />
+	  <None Remove="Platforms\Android\Resources\xml\" />
+	  <None Remove="Platforms\Android\Resources\xml\NetworkSecurityConfig.xml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Infrastructure\" />
 	  <Folder Include="Views\" />
 	  <Folder Include="Views\Admin\" />
 	  <Folder Include="Jobs\" />
+	  <Folder Include="Platforms\Android\Resources\xml\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />

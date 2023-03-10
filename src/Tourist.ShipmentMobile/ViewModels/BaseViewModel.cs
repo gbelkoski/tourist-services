@@ -13,4 +13,15 @@ public abstract class BaseViewModel : INotifyPropertyChanged
     {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
+
+    private bool _isRefreshing;
+    public bool IsRefreshing
+    {
+        get { return _isRefreshing; }
+        set
+        {
+            _isRefreshing = value;
+            OnPropertyChanged("IsRefreshing");
+        }
+    }
 }

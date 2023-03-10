@@ -11,9 +11,9 @@ public class SyncCustomersCommand : ICommand
 
 public class SyncCustomersCommandHandler : ICommandHandler<SyncCustomersCommand>
 {
-    readonly ICustomerRepository _customerRepository;
+    readonly IGenericRepository<Customer> _customerRepository;
 
-    public SyncCustomersCommandHandler(ICustomerRepository customerRepository)
+    public SyncCustomersCommandHandler(IGenericRepository<Customer> customerRepository)
     {
         _customerRepository = customerRepository;
     }

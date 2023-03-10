@@ -14,9 +14,9 @@ public class CreateShipmentLineItemCommand : ICommand
 
 public class CreateShipmentLineItemCommandHandler : ICommandHandler<CreateShipmentLineItemCommand>
 {
-    readonly ICustomerRepository _customerRepository;
+    readonly IGenericRepository<Customer> _customerRepository;
 
-    public CreateShipmentLineItemCommandHandler(ICustomerRepository customerRepository)
+    public CreateShipmentLineItemCommandHandler(IGenericRepository<Customer> customerRepository)
     {
         _customerRepository = customerRepository;
     }

@@ -14,9 +14,9 @@ public class CreateCustomerCommand : ICommand
 
 public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerCommand>
 {
-    readonly ICustomerRepository _customerRepository;
+    readonly IGenericRepository<Customer> _customerRepository;
 
-    public CreateCustomerCommandHandler(ICustomerRepository customerRepository)
+    public CreateCustomerCommandHandler(IGenericRepository<Customer> customerRepository)
     {
         _customerRepository = customerRepository;
     }

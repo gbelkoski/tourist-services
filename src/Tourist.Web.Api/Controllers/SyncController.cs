@@ -1,8 +1,6 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
-using Tourist.Domain;
 
 namespace Tourist.Web.Api.Controllers;
 [ApiController]
@@ -18,18 +16,21 @@ public class SyncController : ControllerBase
     }
 
     [HttpPost(Name = "items")]
+    [Route("items")]
     public async Task SyncItems(SyncItemsCommand command)
     {
         await _commandDispatcher.SendAsync(command);
     }
 
-    [HttpPost("[action]")]
+    [HttpPost(Name = "customers")]
+    [Route("customers")]
     public async Task SyncCustomers(SyncCustomersCommand command)
     {
         await _commandDispatcher.SendAsync(command);
     }
 
     [HttpPost(Name = "shipments")]
+    [Route("shipments")]
     public async Task SyncShipments(SyncShipmentsCommand command)
     {
         await _commandDispatcher.SendAsync(command);

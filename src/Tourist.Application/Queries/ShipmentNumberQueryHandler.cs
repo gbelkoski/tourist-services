@@ -1,6 +1,5 @@
 using Tourist.Domain;
 using Tourist.Infrastructure;
-using Tourist.Domain;
 using System.Threading.Tasks;
 
 namespace Tourist.Application.Queries;

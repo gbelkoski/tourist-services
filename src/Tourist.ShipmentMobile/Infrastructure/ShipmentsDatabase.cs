@@ -80,6 +80,7 @@ public class ShipmentsDatabase
 
     public async Task<List<Customer>> GetDirtyCutomers()
     {
+        await Init();
         return await Database.Table<Customer>().Where(i => i.IsDirty).ToListAsync();
     }
 
@@ -91,6 +92,7 @@ public class ShipmentsDatabase
 
     public async Task<List<Item>> GetDirtyItems()
     {
+        await Init();
         return await Database.Table<Item>().Where(i => i.IsDirty).ToListAsync();
     }
 
@@ -131,6 +133,7 @@ public class ShipmentsDatabase
 
     public async Task<Item> GetItemAsync(int id)
     {
+        await Init();
         return await Database.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 

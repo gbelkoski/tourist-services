@@ -23,6 +23,14 @@ public class ManageCustomersViewModel : BaseViewModel
             {
                 Shell.Current.GoToAsync($"//mainpage/adminmenu/managecustomers/addeditcustomer?customerId=-1");
             });
+
+        RefreshCustomersCommand = new Command(
+            execute: () =>
+            {
+                LoadData();
+            });
+
+        Customers = new ObservableCollection<CustomerModel>();
         LoadData();
     }
 
@@ -41,16 +49,20 @@ public class ManageCustomersViewModel : BaseViewModel
 
     public ICommand CustomerSelectedCommand { private set; get; }
 
+    public ICommand RefreshCustomersCommand { private set; get; }
+
     public async void LoadData()
     {
+        IsRefreshing = true;
+        Customers.Clear();
         var result = await _dataRepository.GetCustomersAsync();
-
-        Customers = new ObservableCollection<CustomerModel>();
         result.ForEach(r => Customers.Add(
             new CustomerModel()
             {
                 Id = r.Id,
                 Name = r.Name
             }));
+
+        IsRefreshing = false;
     }
 }
