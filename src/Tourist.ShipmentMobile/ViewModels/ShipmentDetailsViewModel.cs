@@ -58,10 +58,18 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
         DeleteLineItemCommand = new Command(
             execute: async (li) =>
             {
-                var lineItemModel = li as ShipmentItemModel;
-                var lineItemDb = await _dataRepository.GetShipmentLineItemAsync(lineItemModel.Id);
-                await _dataRepository.DeleteShipmentLineItemAsync(lineItemDb);
-                ShipmentItems.Remove(lineItemModel);
+                if((await Shell.Current.DisplayActionSheet("Бришење", "Откажи", "Да", "Дали сте сигурни?"))=="Да")
+                {
+                    var lineItemModel = li as ShipmentItemModel;
+                    var lineItemDb = await _dataRepository.GetShipmentLineItemAsync(lineItemModel.Id);
+                    if(lineItemDb.DateShipped != null)
+                    {
+                        await Shell.Current.DisplayAlert("Грешка", "Ставката е веќе испорачана", "ОК");
+                        return;
+                    }
+                    await _dataRepository.DeleteShipmentLineItemAsync(lineItemDb);
+                    ShipmentItems.Remove(lineItemModel);
+                }
             });
 
         PrintShipmentCommand = new Command(

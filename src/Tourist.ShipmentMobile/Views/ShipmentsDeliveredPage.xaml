@@ -3,15 +3,38 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourist.ShipmentMobile.ShipmentsDeliveredPage"
              Title="Испорачани">
-    <ListView ItemsSource="{Binding Shipments}" RowHeight="100">
+    <ListView ItemsSource="{Binding Shipments}" RowHeight="100" SelectionMode="None">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <HorizontalStackLayout VerticalOptions="Center">
-                        <Label Text="{Binding ShipmentNo}" FontSize="26" Padding="20,0,0,0"/>
-                        <Label Text="{Binding DateShipped, StringFormat='{}{0:dd.MM.yyyy hh:mm}'}"  FontSize="26" Padding="20,0,0,0"/>
-                        <Label Text="{Binding CustomerName}" FontSize="26" Padding="20,0,0,0"/>
-                    </HorizontalStackLayout>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding ShipmentNo}"
+                               FontSize="26"
+                               Padding="20,0,0,0"/>
+
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding CustomerName}"
+                            FontAttributes="Italic"
+                            VerticalOptions="End"
+                            FontSize="26" />
+
+                        <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding DateShipped, StringFormat='{}{0:dd.MM.yyyy hh:mm}'}"
+                               Padding="20,0,0,0"/>
+
+                    </Grid>
                 </ViewCell>
             </DataTemplate>
         </ListView.ItemTemplate>

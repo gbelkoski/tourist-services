@@ -26,7 +26,6 @@ public class TouristApiClient
         using var httpResponseMessage =
             await _httpClient.PostAsync("/sync/customers", customersJson);
         
-        httpResponseMessage.EnsureSuccessStatusCode();
         return httpResponseMessage.IsSuccessStatusCode;
     }
 
@@ -40,7 +39,6 @@ public class TouristApiClient
         using var httpResponseMessage =
             await _httpClient.PostAsync("/sync/items", itemsJson);
 
-        httpResponseMessage.EnsureSuccessStatusCode();
         return httpResponseMessage.IsSuccessStatusCode;
     }
 
@@ -54,7 +52,6 @@ public class TouristApiClient
         using var httpResponseMessage =
             await _httpClient.PostAsync("/sync/shipments", shipmentsJson);
 
-        httpResponseMessage.EnsureSuccessStatusCode();
         return httpResponseMessage.IsSuccessStatusCode;
     }
 
@@ -68,7 +65,6 @@ public class TouristApiClient
         using var httpResponseMessage =
             await _httpClient.PostAsync($"/sync/Sync{entityName}", entitiesJson);
 
-        httpResponseMessage.EnsureSuccessStatusCode();
         return httpResponseMessage.IsSuccessStatusCode;
     }
 }

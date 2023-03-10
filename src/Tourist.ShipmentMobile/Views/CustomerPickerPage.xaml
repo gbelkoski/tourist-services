@@ -4,10 +4,12 @@
              x:Class="Tourist.ShipmentMobile.CustomerPickerPage"
              xmlns:vm="clr-namespace:Tourist.ShipmentMobile.ViewModels"
              Title="Клиенти">
-    <ListView ItemsSource="{Binding Customers}" x:Name="lstCustomers" RowHeight="120">
+    <ListView ItemsSource="{Binding Customers}" SelectionMode="None" x:Name="lstCustomers" RowHeight="120">
         <ListView.ItemTemplate>
             <DataTemplate>
-                 <TextCell Text="{Binding Name}" Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:CustomerPickerViewModel}}}" CommandParameter="{Binding .}"/>
+                 <TextCell Text="{Binding Name}"
+                           Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:CustomerPickerViewModel}}}"
+                           CommandParameter="{Binding .}" />
             </DataTemplate>
         </ListView.ItemTemplate>
     </ListView>

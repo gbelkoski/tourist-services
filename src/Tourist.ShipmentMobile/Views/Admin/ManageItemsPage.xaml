@@ -7,7 +7,13 @@
 
     <VerticalStackLayout Spacing="30" Margin="10">
         <Button Text="Нов артикл/услуга" Command="{Binding NewItemCommand}" />
-        <ListView ItemsSource="{Binding Items}" x:Name="lstItems" RowHeight="120" IsPullToRefreshEnabled="True" RefreshCommand="{Binding RefreshItemsCommand}" IsRefreshing="{Binding IsRefreshing}">
+        <ListView ItemsSource="{Binding Items}"
+                  x:Name="lstItems"
+                  RowHeight="120"
+                  IsPullToRefreshEnabled="True"
+                  RefreshCommand="{Binding RefreshItemsCommand}"
+                  IsRefreshing="{Binding IsRefreshing}"
+                  SelectionMode="None">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Command="{Binding Path = ItemSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:ManageItemsViewModel}}}" CommandParameter="{Binding .}"/>
