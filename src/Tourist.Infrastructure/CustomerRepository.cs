@@ -4,40 +4,31 @@ using SQLite;
 namespace Tourist.Infrastructure;
 public class CustomerRepository : IGenericRepository<Customer>
 {
-    readonly DatabaseConfig _databaseConfig;
+    readonly SQLiteAsyncConnection _dbConnection;
 
     public CustomerRepository(DatabaseConfig databaseConfig)
     {
-        _databaseConfig = databaseConfig;
+        _dbConnection = new SQLiteAsyncConnection(databaseConfig.Database);
     }
 
     public async Task<Customer> Insert(Customer model)
     {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
-
-        await connection.InsertAsync(model);
-        
+        await _dbConnection.InsertAsync(model);
         return model;
     }
     public async Task<List<Customer>> SelectAll()
     {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
-
-        return (await connection.QueryAsync<Customer>("SELECT Name, Address FROM Customer;")).ToList();
+        return (await _dbConnection.QueryAsync<Customer>("SELECT Name, Address FROM Customer;")).ToList();
     }
 
     public async Task<Customer> SelectById(int id)
     {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
-        return await connection.Table<Customer>().Where(i => i.Id == id).FirstOrDefaultAsync();
+        return await _dbConnection.Table<Customer>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
     public async Task<Customer> Update(Customer model)
     {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
-
-        await connection.UpdateAsync(model);
-
+        await _dbConnection.UpdateAsync(model);
         return model;
     }
 }

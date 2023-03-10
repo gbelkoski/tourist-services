@@ -8,7 +8,7 @@ public class GenericRepository<T> : IGenericRepository<T> where T : class
 
     public GenericRepository(DatabaseConfig config)
     {
-        _dbConnection = new SQLiteAsyncConnection(config.ConnectionString);
+        _dbConnection = new SQLiteAsyncConnection(config.Database);
     }
 
     public async Task<T> Insert(T model)

@@ -9,10 +9,12 @@ var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 // TO DO: Use with options
-builder.Services.AddSingleton(new DatabaseConfig { ConnectionString = "AppData/Cleanex.db" });
+var databaseSettings = builder.Configuration.GetSection(nameof(DatabaseConfig)).Get<DatabaseConfig>();
+builder.Services.AddSingleton<DatabaseConfig>(databaseSettings);
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
 builder.Services.AddTransient<IGenericRepository<Customer>, CustomerRepository>();
 builder.Services.AddTransient<IGenericRepository<Item>, ItemRepository>();
+builder.Services.AddTransient<IGenericRepository<ShipmentLineItem>, ShipmentRepository>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

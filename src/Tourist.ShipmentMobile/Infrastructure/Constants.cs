@@ -5,6 +5,8 @@ public static class Constants
 {
     public static readonly string DatabaseFilename = "CleanexDb.db3";
 
+    public static string TouristApi = "http://192.168.86.20:5000";
+
     public const SQLite.SQLiteOpenFlags Flags =
         // open the database in read/write mode
         SQLite.SQLiteOpenFlags.ReadWrite |
@@ -14,12 +16,4 @@ public static class Constants
         SQLite.SQLiteOpenFlags.SharedCache;
 
     public static string DatabasePath => Path.Combine(FileSystem.AppDataDirectory, DatabaseFilename);
-
-    //public static string DatabasePath => Path.Combine(Android.OS.Environment.ExternalStorageDirectory.AbsolutePath, DatabaseFilename);
-
-    //public static string DatabasePath => Path.Combine(System.Environment.GetFolderPath(System.Environment.SpecialFolder.Personal), DatabaseFilename);
-
-    //public static string DatabasePath => Path.Combine("/data/user/0/Documents", DatabaseFilename);
-
-    //public static string DatabasePath => Path.Combine("/sdcard/Android/media/com.cleanex.shipmentmobile", DatabaseFilename);
 }

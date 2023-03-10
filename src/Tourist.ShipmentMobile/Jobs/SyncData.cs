@@ -41,18 +41,33 @@ public class SyncDataJob
         if (itemsToSync.Any())
         {
             await _touristApiClient.PostSyncItems(itemsToSync);
+            itemsToSync.ForEach(async i =>
+            {
+                i.IsDirty = false;
+                await _dataRepository.UpdateItemAsync(i);
+            });
         }
 
         var customersToSync = await _dataRepository.GetDirtyCutomers();
         if(customersToSync.Any())
         {
             await _touristApiClient.PostSyncCustomers(customersToSync);
+            customersToSync.ForEach(async c =>
+            {
+                c.IsDirty = false;
+                await _dataRepository.UpdateCustomerAsync(c);
+            });
         }
 
         var shipmentsToSync = await _dataRepository.GetDirtyShipmentAsync();
-        //if(shipmentsToSync.Any())
-        //{
-        //    await _touristApiClient.PostSyncShipments(shipmentsToSync);
-        //}
+        if (shipmentsToSync.Any())
+        {
+            await _touristApiClient.PostSyncShipments(shipmentsToSync);
+            shipmentsToSync.ForEach(async s =>
+            {
+                s.IsDirty = false;
+                await _dataRepository.UpdateShipmentLineItemAsync(s);
+            });
+        }
     }
 }

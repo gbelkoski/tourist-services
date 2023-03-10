@@ -13,7 +13,7 @@ public class TouristApiClient
     {
         _httpClient = new HttpClient();
 
-        _httpClient.BaseAddress = new Uri("http://192.168.86.20:5000");
+        _httpClient.BaseAddress = new Uri(Constants.TouristApi);
     }
 
     public async Task<bool> PostSyncCustomers(List<Customer> customers)
@@ -23,7 +23,6 @@ public class TouristApiClient
         Encoding.UTF8,
         System.Net.Mime.MediaTypeNames.Application.Json); // using static System.Net.Mime.MediaTypeNames;
 
-        var cus = await customersJson.ReadAsStringAsync();
         using var httpResponseMessage =
             await _httpClient.PostAsync("/sync/customers", customersJson);
         
@@ -66,7 +65,6 @@ public class TouristApiClient
         Encoding.UTF8,
         System.Net.Mime.MediaTypeNames.Application.Json); // using static System.Net.Mime.MediaTypeNames;
 
-        var cus = await entitiesJson.ReadAsStringAsync();
         using var httpResponseMessage =
             await _httpClient.PostAsync($"/sync/Sync{entityName}", entitiesJson);
 

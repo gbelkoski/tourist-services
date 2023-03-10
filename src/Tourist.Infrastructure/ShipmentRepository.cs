@@ -2,36 +2,43 @@ using Tourist.Domain;
 using SQLite;
 
 namespace Tourist.Infrastructure;
-public class ShipmentRepository : IShipmentRepository
+public class ShipmentRepository : IShipmentRepository, IGenericRepository<ShipmentLineItem>
 {
-    readonly DatabaseConfig _databaseConfig;
+    readonly SQLiteAsyncConnection _dbConnection;
 
     public ShipmentRepository(DatabaseConfig databaseConfig)
     {
-        _databaseConfig = databaseConfig;
-    }
-
-    public async Task<ShipmentLineItem> Insert(ShipmentLineItem model)
-    {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
-
-        await connection.ExecuteAsync("INSERT INTO ShipmentLineItem ()" +
-            "VALUES ();", model);
-        
-        return model;
+        _dbConnection = new SQLiteAsyncConnection(databaseConfig.Database);
     }
     
     public async Task<List<ShipmentLineItem>> SelectActiveByCustomer(Guid customerId)
     {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
- 
-        return (await connection.QueryAsync<ShipmentLineItem>("SELECT FROM ShipmentLineItem WHERE CustomerId  = @customerId;", customerId)).ToList();
+        return (await _dbConnection.QueryAsync<ShipmentLineItem>("SELECT FROM ShipmentLineItem WHERE CustomerId  = @customerId;", customerId)).ToList();
     }
 
     public async Task<List<ShipmentLineItem>> SelectDelivered(string shipmentNo)
     {
-        var connection = new SQLiteAsyncConnection(_databaseConfig.ConnectionString);
- 
-        return (await connection.QueryAsync<ShipmentLineItem>("SELECT  FROM ShipmentLineItem WHERE Id = @Id;", shipmentNo)).ToList();
+        return (await _dbConnection.QueryAsync<ShipmentLineItem>("SELECT  FROM ShipmentLineItem WHERE Id = @Id;", shipmentNo)).ToList();
+    }
+
+    public async Task<ShipmentLineItem> Insert(ShipmentLineItem model)
+    {
+        await _dbConnection.InsertAsync(model);
+        return model;
+    }
+    public async Task<List<ShipmentLineItem>> SelectAll()
+    {
+        return (await _dbConnection.QueryAsync<ShipmentLineItem>("SELECT Name, Address FROM ShipmentLineItems;")).ToList();
+    }
+
+    public async Task<ShipmentLineItem> SelectById(int id)
+    {
+        return await _dbConnection.Table<ShipmentLineItem>().Where(i => i.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<ShipmentLineItem> Update(ShipmentLineItem model)
+    {
+        await _dbConnection.UpdateAsync(model);
+        return model;
     }
 }
