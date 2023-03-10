@@ -2,6 +2,8 @@
 using Microsoft.Extensions.DependencyInjection;
 using Tourist.ShipmentMobile.Infrastructure;
 using Tourist.ShipmentMobile.Jobs;
+using Plugin.Fingerprint;
+using Plugin.Fingerprint.Abstractions;
 
 namespace Tourist.ShipmentMobile;
 public static class MauiProgram
@@ -32,6 +34,9 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddSingleton<ShipmentsDatabase>();
 		mauiAppBuilder.Services.AddSingleton<SyncDataJob>();
 		mauiAppBuilder.Services.AddTransient<TouristApiClient>();
+
+        mauiAppBuilder.Services.AddSingleton<MainPage>();
+        mauiAppBuilder.Services.AddSingleton(typeof(IFingerprint), CrossFingerprint.Current);
 
         return mauiAppBuilder;
     }

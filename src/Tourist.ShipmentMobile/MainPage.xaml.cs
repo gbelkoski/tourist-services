@@ -1,11 +1,16 @@
-﻿namespace Tourist.ShipmentMobile;
+﻿using Plugin.Fingerprint.Abstractions;
+
+namespace Tourist.ShipmentMobile;
 
 public partial class MainPage : ContentPage
 {
-	public MainPage()
+    readonly IFingerprint _fingerprint;
+
+    public MainPage(IFingerprint fingerprint)
 	{
-		InitializeComponent();
-	}
+        InitializeComponent();
+        _fingerprint = fingerprint;
+    }
 
     async void btnNewShipment_Clicked(System.Object sender, System.EventArgs e)
     {
@@ -19,6 +24,15 @@ public partial class MainPage : ContentPage
 
     async void btnAdmin_Clicked(System.Object sender, System.EventArgs e)
     {
-        await Shell.Current.GoToAsync("//mainpage//passwordprompt");
+        var request = new AuthenticationRequestConfiguration("Validate that you have fingers", "Because without them you will not be able to access");
+        var result = await _fingerprint.AuthenticateAsync(request);
+        if (result.Authenticated)
+        {
+            await Shell.Current.GoToAsync("//mainpage//adminmenu");
+        }
+        else
+        {
+            await Shell.Current.GoToAsync("//mainpage//passwordprompt");
+        }
     }
 }
