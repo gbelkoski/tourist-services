@@ -1,5 +1,7 @@
 ﻿using System.Collections.ObjectModel;
+using Microsoft.Maui.Platform;
 using Tourist.ShipmentMobile.ViewModels;
+using static Android.Provider.SyncStateContract;
 
 namespace Tourist.ShipmentMobile;
 
@@ -9,12 +11,11 @@ public partial class ShipmentDetailsPage : ContentPage
 	{
         BindingContext = viewModel;
         InitializeComponent();
+        Loaded += ShipmentDetailsPage_Loaded;
     }
 
-    protected override void OnAppearing()
+    private void ShipmentDetailsPage_Loaded(object sender, EventArgs e)
     {
-        base.OnAppearing();
-
         txtBarcode.Focus();
     }
 }

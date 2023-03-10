@@ -166,6 +166,12 @@ public class ShipmentsDatabase
         return await _dbConnection.ExecuteAsync("UPDATE [ShipmentLineItem] SET [DateShipped] = ?, IsDirty = 1 WHERE [DateShipped] is null and [CustomerId] = ?", DateTime.Now, customerId);
     }
 
+    public async Task<int> MarkEntityNotDirty(ISyncEntity entity)
+    {
+        entity.IsDirty = false;
+        return await _dbConnection.UpdateAsync(entity);
+    }
+
     public async Task<int> DeleteCustomerAsync(Customer item)
     {
         item.IsDeleted = true;

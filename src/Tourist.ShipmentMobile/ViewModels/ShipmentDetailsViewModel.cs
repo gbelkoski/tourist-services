@@ -68,7 +68,8 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
             execute: async () =>
             {
                 await _dataRepository.MarkAsShippedAsync(SelectedCustomerId);
-                ShipmentItems.Clear(); 
+                ShipmentItems.Clear();
+                await Shell.Current.GoToAsync("//mainpage//customerpicker");
             });
     }
 

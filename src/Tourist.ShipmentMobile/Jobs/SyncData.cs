@@ -43,8 +43,7 @@ public class SyncDataJob
             await _touristApiClient.PostSyncItems(itemsToSync);
             itemsToSync.ForEach(async i =>
             {
-                i.IsDirty = false;
-                await _dataRepository.UpdateItemAsync(i);
+                await _dataRepository.MarkEntityNotDirty(i);
             });
         }
 
@@ -54,8 +53,7 @@ public class SyncDataJob
             await _touristApiClient.PostSyncCustomers(customersToSync);
             customersToSync.ForEach(async c =>
             {
-                c.IsDirty = false;
-                await _dataRepository.UpdateCustomerAsync(c);
+                await _dataRepository.MarkEntityNotDirty(c);
             });
         }
 
@@ -65,8 +63,7 @@ public class SyncDataJob
             await _touristApiClient.PostSyncShipments(shipmentsToSync);
             shipmentsToSync.ForEach(async s =>
             {
-                s.IsDirty = false;
-                await _dataRepository.UpdateShipmentLineItemAsync(s);
+                await _dataRepository.MarkEntityNotDirty(s);
             });
         }
     }
