@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Tourist.ShipmentMobile.ShipmentDetailsPage"
-             xmlns:vm="clr-namespace:Tourist.ShipmentMobile.ViewModels"
+             x:Class="Tourist.ShipmentMobile.DeliveredShipmentDetailsPage"
              Title="Детали за испратница" >
     <VerticalStackLayout>
         <Grid Margin="0,30,0,30">
@@ -15,18 +14,10 @@
                 <RowDefinition />
             </Grid.RowDefinitions>
             <Label Text="Клиент: " HorizontalTextAlignment="End" FontSize="Medium"/>
-            <Label Text="{Binding SelectedCustomerName}" Grid.Column="1" Padding="20,0,0,0"  FontSize="Medium"/>
+            <Label Text="{Binding CustomerName}" Grid.Column="1" Padding="20,0,0,0"  FontSize="Medium"/>
             <Label Text="Бр. испратница: " Grid.Row="1" HorizontalTextAlignment="End" FontSize="Medium"/>
             <Label Text="{Binding ShipmentNo}" Grid.Column="1" Grid.Row="1" Padding="20,0,0,0" FontSize="Medium"/>
         </Grid>
-        <Entry Placeholder="Баркод"
-            Text="{Binding Barcode}"
-            FontSize="26"
-            MaxLength="13"
-            Keyboard="Numeric"
-            ReturnCommand="{Binding BarcodeEnteredCommand}"
-            x:Name="txtBarcode"
-            />
         <ListView x:Name="lineItemsList"
                   ItemsSource="{Binding ShipmentItems}"
                   Margin="0,30,0,30"
@@ -38,7 +29,6 @@
                         <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
                             </Grid.ColumnDefinitions>
                             <Label Text="{Binding ItemName}"
@@ -49,19 +39,14 @@
                                    Grid.Column="1"
                                    FontSize="26"
                                    Padding="20,0,0,0"/>
-                            <Button Text="Бриши" 
-                                    Grid.Column="2"
-                                    TextColor="Red"
-                                    Command="{Binding Path = DeleteLineItemCommand, Source={RelativeSource AncestorType={x:Type vm:ShipmentDetailsViewModel}}}"
-                                    CommandParameter="{Binding .}" />
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <Button Text="Печати испратница"
+        <!--<Button Text="Печати испратница"
                 Command="{Binding PrintShipmentCommand}"
-                HorizontalOptions="FillAndExpand"/>
+                HorizontalOptions="FillAndExpand"/>-->
     </VerticalStackLayout>
 </ContentPage>

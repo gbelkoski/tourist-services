@@ -30,7 +30,7 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
                     await dataRepository.UpdateItemAsync(item);
                 }
 
-                Shell.Current.GoToAsync("//mainpage//adminmenu//manageitems");
+                await Shell.Current.GoToAsync("//mainpage//adminmenu//manageitems");
             });
     }
 

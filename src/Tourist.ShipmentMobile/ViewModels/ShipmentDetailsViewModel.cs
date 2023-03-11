@@ -135,7 +135,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
     public async void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         SelectedCustomerId = int.Parse(query["customerId"].ToString());
-        SelectedCustomerName = (await _dataRepository.GetCustomerAsync(SelectedCustomerId)).Name; //query["customerName"].ToString();
+        SelectedCustomerName = (await _dataRepository.GetCustomerAsync(SelectedCustomerId)).Name;
 
         var activeShipmentItems = await _dataRepository.GetActiveShipmentAsync(SelectedCustomerId);
         ShipmentItems = new ObservableCollection<ShipmentItemModel>();

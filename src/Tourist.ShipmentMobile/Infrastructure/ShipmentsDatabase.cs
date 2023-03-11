@@ -1,6 +1,7 @@
 ﻿using System;
 using SQLite;
 using Tourist.Domain;
+using Tourist.ShipmentMobile.Models;
 
 namespace Tourist.ShipmentMobile.Infrastructure;
 public class ShipmentsDatabase
@@ -95,12 +96,13 @@ public class ShipmentsDatabase
         return await _dbConnection.Table<ShipmentLineItem>().Where(s => s.IsDirty && s.DateShipped != null).ToListAsync();
     }
 
-    public async Task<List<ShipmentDeliveredModel>> GetDeliveredShipmentsAsync()
+    public async Task<List<DeliveredShipmentModel>> GetDeliveredShipmentsAsync()
     {
         await Init();
-        return await _dbConnection.QueryAsync<ShipmentDeliveredModel>(@"
+        return await _dbConnection.QueryAsync<DeliveredShipmentModel>(@"
             SELECT  [ShipmentLineItem].[ShipmentNo],
                     [ShipmentLineItem].[DateShipped],
+                    [ShipmentLineItem].[CustomerId],
                     [Customer].[Name] as CustomerName
             FROM [ShipmentLineItem]
             INNER JOIN [Customer]
@@ -129,6 +131,11 @@ public class ShipmentsDatabase
     public async Task<ShipmentLineItem> GetShipmentLineItemAsync(int id)
     {
         return await _dbConnection.Table<ShipmentLineItem>().Where(i => i.Id == id).FirstOrDefaultAsync();
+    }
+
+    public async Task<List<ShipmentLineItem>> GetShipmentLineItemsAsync(string shipmentNo, int customerId)
+    {
+        return await _dbConnection.Table<ShipmentLineItem>().Where(i => i.ShipmentNo == shipmentNo && i.CustomerId == customerId).ToListAsync();
     }
 
     public async Task<int> SaveCustomerAsync(Customer item)
@@ -181,7 +188,6 @@ public class ShipmentsDatabase
 
     public async Task<int> DeleteShipmentLineItemAsync(ShipmentLineItem item)
     {
-        // TO DO: how to sync hard delete items? immediate server call?
         return await _dbConnection.DeleteAsync(item);
     }
 

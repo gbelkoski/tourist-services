@@ -15,7 +15,8 @@ public partial class AppShell : Shell
     {
         Routes.Add("customerpicker", typeof(CustomerPickerPage));
         Routes.Add("shipmentdetails", typeof(ShipmentDetailsPage));
-        Routes.Add("shipmentsdelivered", typeof(ShipmentsDeliveredPage));
+        Routes.Add("deliveredshipments", typeof(DeliveredShipmentsPage));
+        Routes.Add("deliveredshipmentdetails", typeof(DeliveredShipmentDetailsPage));
 
         // Admin section
         Routes.Add("passwordprompt", typeof(PasswordPromptPage));

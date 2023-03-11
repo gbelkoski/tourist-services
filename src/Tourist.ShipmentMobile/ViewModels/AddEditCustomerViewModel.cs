@@ -33,13 +33,10 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
                     {
                         await dataRepository.UpdateCustomerAsync(customer);
                     }
-                    catch(Exception ex)
-                    {
-
-                    }
+                    catch { }
                 }
 
-                Shell.Current.GoToAsync("//mainpage//adminmenu//managecustomers");
+                await Shell.Current.GoToAsync("//mainpage//adminmenu//managecustomers");
             });
     }
 

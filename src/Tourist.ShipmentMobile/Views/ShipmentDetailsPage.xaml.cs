@@ -1,7 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using Microsoft.Maui.Platform;
 using Tourist.ShipmentMobile.ViewModels;
-using static Android.Provider.SyncStateContract;
 
 namespace Tourist.ShipmentMobile;
 

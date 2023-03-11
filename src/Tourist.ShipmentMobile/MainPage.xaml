@@ -4,28 +4,32 @@
              x:Class="Tourist.ShipmentMobile.MainPage">
 
     <FlexLayout Direction="Row"
-                Margin="0,20,0,0"
-                Wrap="Wrap" 
-                AlignItems="Center"
-                JustifyContent="SpaceEvenly">
+                Margin="0,10,0,10"
+                Wrap="Wrap">
         <Button Text="Нова испратница"
                 x:Name="btnNew"
-                HeightRequest="200"
-                WidthRequest="350"
+                Clicked="btnNewShipment_Clicked"
                 FontSize="26"
-                Clicked="btnNewShipment_Clicked"/>
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"
+                ImageSource="new_shipment.png"/>
         <Button Text="Испорачани"
                 x:Name="btnDelivered"
-                HeightRequest="200"
-                WidthRequest="350"
+                Clicked="btnDelivered_Clicked"
                 FontSize="26"
-                Clicked="btnDelivered_Clicked"/>
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"
+                ImageSource="shipped.png"/>
         <Button Text="Администрација"
                 x:Name="btnAdmin"
-                HeightRequest="200"
-                WidthRequest="350"
+                Clicked="btnAdmin_Clicked"
                 FontSize="26"
-                Clicked="btnAdmin_Clicked"/>
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"
+                FlexLayout.Grow="1"
+                ImageSource="settings.png"/>
     </FlexLayout>
 
 </ContentPage>

@@ -19,7 +19,7 @@ public partial class MainPage : ContentPage
 
     async void btnDelivered_Clicked(System.Object sender, System.EventArgs e)
     {
-        await Shell.Current.GoToAsync("//mainpage//shipmentsdelivered");
+        await Shell.Current.GoToAsync("//mainpage//deliveredshipments");
     }
 
     async void btnAdmin_Clicked(System.Object sender, System.EventArgs e)

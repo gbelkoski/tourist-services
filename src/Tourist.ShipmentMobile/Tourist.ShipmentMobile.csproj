@@ -66,6 +66,13 @@
 	  <None Remove="Platforms\Android\Resources\xml\" />
 	  <None Remove="Platforms\Android\Resources\xml\NetworkSecurityConfig.xml" />
 	  <None Remove="Plugin.Fingerprint" />
+	  <None Remove="Resources\Images\new.png" />
+	  <None Remove="Resources\Images\settings.png" />
+	  <None Remove="Resources\Images\shipped.png" />
+	  <None Remove="Resources\Images\newShipment.png" />
+	  <None Remove="Resources\Images\customer.png" />
+	  <None Remove="Resources\Images\product.png" />
+	  <None Remove="Models\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Infrastructure\" />
@@ -73,6 +80,7 @@
 	  <Folder Include="Views\Admin\" />
 	  <Folder Include="Jobs\" />
 	  <Folder Include="Platforms\Android\Resources\xml\" />
+	  <Folder Include="Models\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />
@@ -89,6 +97,12 @@
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ShipmentsPending.xaml">
 	    <SubType></SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\ShipmentDetailsPage %28copy%29.xaml">
+	    <SubType>Designer</SubType>
+	  </MauiXaml>
+	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\DeliveredShipmentDetailsPage.xaml">
+	    <SubType>Designer</SubType>
 	  </MauiXaml>
 	</ItemGroup>
 	<ItemGroup>
@@ -108,5 +122,14 @@
 	  <None Include="MainPage.xaml" />
 	  <None Include="Views\Admin\AddEditCustomerPage.xaml" />
 	  <None Include="Views\Admin\AddEditItemPage.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Images\settings.png" />
+	  <BundleResource Include="Resources\Images\shipped.png" />
+	  <BundleResource Include="Resources\Images\new_shipment.png" />
+	  <BundleResource Include="**/*" />
+	  <BundleResource Include="Resources\Images\*" />
+	  <BundleResource Include="**/*" />
+	  <BundleResource Include="Resources\Images\*" />
 	</ItemGroup>
 </Project>

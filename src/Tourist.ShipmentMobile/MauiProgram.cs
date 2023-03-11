@@ -45,7 +45,8 @@ public static class MauiProgram
 	{
 		mauiAppBuilder.Services.AddTransient<ViewModels.CustomerPickerViewModel>();
 		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentDetailsViewModel>();
-		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentsDeliveredViewModel>();
+		mauiAppBuilder.Services.AddTransient<ViewModels.DeliveredShipmentsViewModel>();
+        mauiAppBuilder.Services.AddTransient<ViewModels.DeliveredShipmentDetailsViewModel>();
         mauiAppBuilder.Services.AddTransient<ViewModels.ManageCustomersViewModel>();
 		mauiAppBuilder.Services.AddTransient<ViewModels.AddEditCustomerViewModel>();
         mauiAppBuilder.Services.AddTransient<ViewModels.ManageItemsViewModel>();
@@ -58,7 +59,8 @@ public static class MauiProgram
 	{
 		mauiAppBuilder.Services.AddTransient<CustomerPickerPage>();
 		mauiAppBuilder.Services.AddTransient<ShipmentDetailsPage>();
-        mauiAppBuilder.Services.AddTransient<ShipmentsDeliveredPage>();
+        mauiAppBuilder.Services.AddTransient<DeliveredShipmentsPage>();
+        mauiAppBuilder.Services.AddTransient<DeliveredShipmentDetailsPage>();
         mauiAppBuilder.Services.AddTransient<ManageCustomersPage>();
         mauiAppBuilder.Services.AddTransient<AddEditCustomerPage>();
         mauiAppBuilder.Services.AddTransient<ManageItemsPage>();

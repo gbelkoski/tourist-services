@@ -12,7 +12,8 @@
                   IsPullToRefreshEnabled="True"
                   RefreshCommand="{Binding RefreshCustomersCommand}"
                   IsRefreshing="{Binding IsRefreshing}"
-                  SelectionMode="None">
+                  SelectionMode="None"
+                  MaximumHeightRequest="700">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <TextCell Text="{Binding Name}" Command="{Binding Path = CustomerSelectedCommand, Source={RelativeSource AncestorType={x:Type vm:ManageCustomersViewModel}}}" CommandParameter="{Binding .}"/>
