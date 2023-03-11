@@ -29,7 +29,7 @@
             />
         <ListView x:Name="lineItemsList"
                   ItemsSource="{Binding ShipmentItems}"
-                  Margin="0,30,0,30"
+                  Margin="10,30,0,30"
                   MaximumHeightRequest="400"
                   SelectionMode="None">
             <ListView.ItemTemplate>
@@ -37,23 +37,22 @@
                     <ViewCell>
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
+                            <ImageButton Source="remove.png"
+                                        WidthRequest="30"   
+                                        Command="{Binding Path = DeleteLineItemCommand, Source={RelativeSource AncestorType={x:Type vm:ShipmentDetailsViewModel}}}"
+                                        CommandParameter="{Binding .}" />
                             <Label Text="{Binding ItemName}"
-                                   Grid.Column="0"
-                                   FontSize="26"
-                                   Padding="20,0,0,0"/>
-                            <Label Text="{Binding Weight}"
                                    Grid.Column="1"
                                    FontSize="26"
                                    Padding="20,0,0,0"/>
-                            <Button Text="Бриши" 
-                                    Grid.Column="2"
-                                    TextColor="Red"
-                                    Command="{Binding Path = DeleteLineItemCommand, Source={RelativeSource AncestorType={x:Type vm:ShipmentDetailsViewModel}}}"
-                                    CommandParameter="{Binding .}" />
+                            <Label Text="{Binding Weight}"
+                                   Grid.Column="2"
+                                   FontSize="26"
+                                   Padding="20,0,0,0"/>
                         </Grid>
                     </ViewCell>
                 </DataTemplate>
