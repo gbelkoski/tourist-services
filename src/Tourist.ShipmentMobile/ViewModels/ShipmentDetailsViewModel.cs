@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Text.Encodings.Web;
 using System.Windows.Input;
 using Tourist.ShipmentMobile.Infrastructure;
+using Tourist.ShipmentMobile.Models;
 
 namespace Tourist.ShipmentMobile.ViewModels;
 public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
@@ -187,12 +188,4 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
         decimal weigth = decimal.Parse(weightString.Substring(0, 2)) + decimal.Parse(weightString.Substring(2, 2)) / 100;
         return weigth;
     }
-}
-
-public class ShipmentItemModel
-{
-    public int Id { get; set; }
-    public DateTime DateCreated { get; set; }
-    public string ItemName { get; set; }
-    public decimal Weight { get; set; }
 }

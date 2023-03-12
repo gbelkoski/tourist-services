@@ -133,9 +133,13 @@ public class ShipmentsDatabase
         return await _dbConnection.Table<ShipmentLineItem>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
-    public async Task<List<ShipmentLineItem>> GetShipmentLineItemsAsync(string shipmentNo, int customerId)
+    public async Task<List<ShipmentLineItem>> GetShipmentLineItemsAsync(string shipmentNo, int customerId, DateTime shipmentDate)
     {
-        return await _dbConnection.Table<ShipmentLineItem>().Where(i => i.ShipmentNo == shipmentNo && i.CustomerId == customerId).ToListAsync();
+        return await _dbConnection.Table<ShipmentLineItem>()
+            .Where(i => i.ShipmentNo == shipmentNo
+                            && i.CustomerId == customerId
+                            && i.DateShipped == shipmentDate)
+            .ToListAsync();
     }
 
     public async Task<int> SaveCustomerAsync(Customer item)

@@ -15,7 +15,7 @@ public partial class DeliveredShipmentsPage : ContentPage
         DeliveredShipmentModel item = e.Item as DeliveredShipmentModel;
         if(item != null)
         {
-            Shell.Current.GoToAsync($"//mainpage/deliveredshipments/deliveredshipmentdetails?shipmentNo={item.ShipmentNo}&customerId={item.CustomerId}");
+            Shell.Current.GoToAsync($"//mainpage/deliveredshipments/deliveredshipmentdetails?shipmentNo={item.ShipmentNo}&customerId={item.CustomerId}&dateShipped={item.DateShipped.Ticks}");
         }
     }
 }

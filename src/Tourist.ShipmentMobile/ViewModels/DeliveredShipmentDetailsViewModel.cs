@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Text.Encodings.Web;
 using System.Windows.Input;
 using Tourist.ShipmentMobile.Infrastructure;
+using Tourist.ShipmentMobile.Models;
 
 namespace Tourist.ShipmentMobile.ViewModels;
 public class DeliveredShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
@@ -11,12 +12,6 @@ public class DeliveredShipmentDetailsViewModel : BaseViewModel, IQueryAttributab
     public DeliveredShipmentDetailsViewModel(ShipmentsDatabase dataRepository)
 	{
         _dataRepository = dataRepository;
-
-        //PrintShipmentCommand = new Command(
-        //    execute: async () =>
-        //    {
-                
-        //    });
     }
 
 
@@ -32,7 +27,6 @@ public class DeliveredShipmentDetailsViewModel : BaseViewModel, IQueryAttributab
             OnPropertyChanged("ShipmentItems");
         }
     }
-
 
     private string _customerName;
     public string CustomerName
@@ -59,7 +53,8 @@ public class DeliveredShipmentDetailsViewModel : BaseViewModel, IQueryAttributab
     {
         var customerId = int.Parse(query["customerId"].ToString());
         var shipmentNo = query["shipmentNo"].ToString();
-        var shipmentItems = await _dataRepository.GetShipmentLineItemsAsync(shipmentNo, customerId);
+        var dateShipped = new DateTime(long.Parse(query["dateShipped"].ToString()));
+        var shipmentItems = await _dataRepository.GetShipmentLineItemsAsync(shipmentNo, customerId, dateShipped);
         CustomerName = (await _dataRepository.GetCustomerAsync(customerId)).Name;
         ShipmentNo = shipmentNo;
 
