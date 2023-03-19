@@ -15,6 +15,12 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
             {
                 if(IsNew)
                 {
+                    var cust = await _dataRepository.GetCustomerAsync(int.Parse(Id));
+                    if(cust != null)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Грешка", "Постои клиенти со исто ID.", "OK");
+                        return;
+                    }
                     Customer customer = new Customer()
                     {
                         Id = int.Parse(Id),

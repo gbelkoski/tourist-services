@@ -15,6 +15,12 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
             {
                 if (IsNew)
                 {
+                    var cust = await _dataRepository.GetItemAsync(int.Parse(Id));
+                    if (cust != null)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Грешка", "Постои ставка со исто ID.", "OK");
+                        return;
+                    }
                     Item item = new Item()
                     {
                         Id = int.Parse(Id),
