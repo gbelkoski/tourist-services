@@ -21,6 +21,7 @@ public partial class AppShell : Shell
         // Admin section
         Routes.Add("passwordprompt", typeof(PasswordPromptPage));
         Routes.Add("adminmenu", typeof(AdminMenuPage));
+        Routes.Add("managesettings", typeof(ManageSettingsPage));
         Routes.Add("managecustomers", typeof(ManageCustomersPage));
         Routes.Add("addeditcustomer", typeof(AddEditCustomerPage));
         Routes.Add("manageitems", typeof(ManageItemsPage));

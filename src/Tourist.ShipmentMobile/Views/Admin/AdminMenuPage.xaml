@@ -24,6 +24,15 @@
                 BorderColor="AntiqueWhite"
                 BorderWidth="1"
                 ImageSource="product.png"/>
+
+        <Button Text="Подесувања"
+                x:Name="btnManageSettings"
+                Clicked="btnManageSettings_Clicked"
+                FontSize="26"
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"
+                ImageSource="settings.png"/>
     </FlexLayout>
 
 </ContentPage>

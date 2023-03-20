@@ -51,6 +51,7 @@ public static class MauiProgram
 		mauiAppBuilder.Services.AddTransient<ViewModels.AddEditCustomerViewModel>();
         mauiAppBuilder.Services.AddTransient<ViewModels.ManageItemsViewModel>();
         mauiAppBuilder.Services.AddTransient<ViewModels.AddEditItemViewModel>();
+		mauiAppBuilder.Services.AddTransient<ViewModels.ManageSettingsViewModel>();
 
         return mauiAppBuilder;
 	}
@@ -65,6 +66,7 @@ public static class MauiProgram
         mauiAppBuilder.Services.AddTransient<AddEditCustomerPage>();
         mauiAppBuilder.Services.AddTransient<ManageItemsPage>();
 		mauiAppBuilder.Services.AddTransient<AddEditItemPage>();
+		mauiAppBuilder.Services.AddTransient<ManageSettingsPage>();
 
         return mauiAppBuilder;
 	}

@@ -19,4 +19,9 @@ public partial class AdminMenuPage : ContentPage
     {
         await Shell.Current.GoToAsync("//mainpage//adminmenu//manageitems");
     }
+
+    async void btnManageSettings_Clicked(System.Object sender, System.EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//mainpage//adminmenu//managesettings");
+    }
 }

@@ -89,6 +89,9 @@
 	  <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />
 	</ItemGroup>
 	<ItemGroup>
+	  <MauiXaml Remove="Views\Admin\ManageSettings.xaml" />
+	</ItemGroup>
+	<ItemGroup>
 	  <MauiXaml Condition=" '$(EnableDefaultXamlItems)' == 'true' " Update="Views\CustomerPickerPage.xaml">
 	    <SubType>Designer</SubType>
 	  </MauiXaml>
@@ -125,6 +128,7 @@
 	  <None Include="MainPage.xaml" />
 	  <None Include="Views\Admin\AddEditCustomerPage.xaml" />
 	  <None Include="Views\Admin\AddEditItemPage.xaml" />
+	  <None Include="Views\Admin\ManageSettingsPage.xaml" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Images\settings.png" />
