@@ -40,31 +40,40 @@ public class SyncDataJob
         var itemsToSync = await _dataRepository.GetDirtyItems();
         if (itemsToSync.Any())
         {
-            await _touristApiClient.PostSyncItems(itemsToSync);
-            itemsToSync.ForEach(async i =>
+            var success = await _touristApiClient.PostSyncItems(itemsToSync);
+            if (success)
             {
-                await _dataRepository.MarkEntityNotDirty(i);
-            });
+                itemsToSync.ForEach(async i =>
+                {
+                    await _dataRepository.MarkEntityNotDirty(i);
+                });
+            }
         }
 
         var customersToSync = await _dataRepository.GetDirtyCutomers();
         if(customersToSync.Any())
         {
-            await _touristApiClient.PostSyncCustomers(customersToSync);
-            customersToSync.ForEach(async c =>
+            bool success = await _touristApiClient.PostSyncCustomers(customersToSync);
+            if(success)
             {
-                await _dataRepository.MarkEntityNotDirty(c);
-            });
+                customersToSync.ForEach(async c =>
+                {
+                    await _dataRepository.MarkEntityNotDirty(c);
+                });
+            }
         }
 
         var shipmentsToSync = await _dataRepository.GetDirtyShipmentAsync();
         if (shipmentsToSync.Any())
         {
-            await _touristApiClient.PostSyncShipments(shipmentsToSync);
-            shipmentsToSync.ForEach(async s =>
+            var success = await _touristApiClient.PostSyncShipments(shipmentsToSync);
+            if(success)
             {
-                await _dataRepository.MarkEntityNotDirty(s);
-            });
+                shipmentsToSync.ForEach(async s =>
+                {
+                    await _dataRepository.MarkEntityNotDirty(s);
+                });
+            }
         }
     }
 }
