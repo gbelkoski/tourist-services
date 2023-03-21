@@ -1,14 +1,18 @@
+using Microsoft.AspNetCore.Authentication;
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
 using Tourist.Domain;
 using Tourist.Infrastructure;
+using Tourist.Web.Api.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// TO DO: Use with options
+// configure basic authentication 
+builder.Services.AddAuthentication("BasicAuthentication")
+    .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
 var databaseSettings = builder.Configuration.GetSection(nameof(DatabaseConfig)).Get<DatabaseConfig>();
 builder.Services.AddSingleton<DatabaseConfig>(databaseSettings);
 builder.Services.AddSingleton<IDatabaseBootstrap, DatabaseBootstrap>();
@@ -47,7 +51,7 @@ if (app.Environment.IsDevelopment())
 }
 
 //app.UseHttpsRedirection();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

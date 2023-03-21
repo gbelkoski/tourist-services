@@ -1,9 +1,11 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
 
 namespace Tourist.Web.Api.Controllers;
 [ApiController]
+[Authorize]
 [Route("[controller]")]
 public class SyncController : ControllerBase
 {

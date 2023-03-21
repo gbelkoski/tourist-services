@@ -12,12 +12,12 @@ public class DatabaseBootstrap : IDatabaseBootstrap
 {
     readonly DatabaseConfig _databaseConfig;
     readonly SQLite.SQLiteOpenFlags Flags =
-    // open the database in read/write mode
-    SQLite.SQLiteOpenFlags.ReadWrite |
-    // create the database if it doesn't exist
-    SQLite.SQLiteOpenFlags.Create |
-    // enable multi-threaded database access
-    SQLite.SQLiteOpenFlags.SharedCache;
+        // open the database in read/write mode
+        SQLite.SQLiteOpenFlags.ReadWrite |
+        // create the database if it doesn't exist
+        SQLite.SQLiteOpenFlags.Create |
+        // enable multi-threaded database access
+        SQLite.SQLiteOpenFlags.SharedCache;
 
     SQLiteAsyncConnection _dbConnection;
 

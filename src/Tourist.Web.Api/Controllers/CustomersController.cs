@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Tourist.Application.Commands;
 using Tourist.Application.Queries;
@@ -6,6 +7,7 @@ using Tourist.Domain;
 namespace Tourist.Web.Api.Controllers;
 
 [ApiController]
+[Authorize]
 [Route("[controller]")]
 public class CustomersController : ControllerBase
 {
