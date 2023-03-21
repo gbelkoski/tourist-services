@@ -1,5 +1,3 @@
-//using Dapper;
-//using Microsoft.Data.Sqlite;
 using Tourist.Domain;
 using SQLite;
 
