@@ -67,7 +67,7 @@ public class SyncDataJob
         if (shipmentsToSync.Any())
         {
             var success = await _touristApiClient.PostSyncShipments(shipmentsToSync);
-            if(success)
+            if (success)
             {
                 shipmentsToSync.ForEach(async s =>
                 {

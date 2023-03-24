@@ -76,6 +76,7 @@
 	  <None Remove="Resources\Images\customer.png" />
 	  <None Remove="Resources\Images\product.png" />
 	  <None Remove="Models\" />
+	  <None Remove="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Infrastructure\" />
@@ -84,6 +85,7 @@
 	  <Folder Include="Jobs\" />
 	  <Folder Include="Platforms\Android\Resources\xml\" />
 	  <Folder Include="Models\" />
+	  <Folder Include="Converters\" />
 	</ItemGroup>
 	<ItemGroup>
 	  <ProjectReference Include="..\Tourist.Domain\Tourist.Domain.csproj" />

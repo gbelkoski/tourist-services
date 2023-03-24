@@ -2,16 +2,23 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Tourist.ShipmentMobile.DeliveredShipmentsPage"
+             xmlns:converters="clr-namespace:Tourist.ShipmentMobile.Converters"
              Title="Испорачани">
-
+    <ContentPage.Resources>
+        <converters:BoolToColorConverter x:Key="colorConverter"/>
+    </ContentPage.Resources>
     <ListView ItemsSource="{Binding Shipments}"
               RowHeight="100"
+              IsPullToRefreshEnabled="True"
+              RefreshCommand="{Binding RefreshShipmentsCommand}"
+              IsRefreshing="{Binding IsRefreshing}"
               SelectionMode="None"
               ItemTapped="ListView_ItemTapped">
         <ListView.ItemTemplate>
             <DataTemplate>
                 <ViewCell>
-                    <Grid Padding="10">
+                    <Grid Padding="10"
+                          BackgroundColor="{Binding Path=IsDirty, Converter={StaticResource colorConverter}, ConverterParameter='#ffc0cb'}">
                         <Grid.RowDefinitions>
                             <RowDefinition Height="Auto" />
                             <RowDefinition Height="Auto" />

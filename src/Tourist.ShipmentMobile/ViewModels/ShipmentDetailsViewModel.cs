@@ -44,7 +44,8 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                     CustomerId = SelectedCustomerId,
                     ItemId = itemId,
                     DateCreated = DateTime.Now,
-                    Weight = weight
+                    Weight = weight,
+                    IsDirty = true
                 });
                 ShipmentItems.Add(new ShipmentItemModel()
                 {

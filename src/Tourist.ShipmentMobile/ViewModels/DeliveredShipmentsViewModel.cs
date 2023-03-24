@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using Tourist.ShipmentMobile.Infrastructure;
 using Tourist.ShipmentMobile.Models;
+using System.Windows.Input;
 
 namespace Tourist.ShipmentMobile.ViewModels;
 public class DeliveredShipmentsViewModel : BaseViewModel
@@ -11,6 +12,13 @@ public class DeliveredShipmentsViewModel : BaseViewModel
     {
         _dataRepository = dataRepository;
 
+        RefreshShipmentsCommand = new Command(
+            execute: () =>
+            {
+                LoadData();
+            });
+
+        Shipments = new ObservableCollection<DeliveredShipmentModel>();
         LoadData();
     }
 
@@ -25,24 +33,28 @@ public class DeliveredShipmentsViewModel : BaseViewModel
         }
     }
 
+    public ICommand RefreshShipmentsCommand { private set; get; }
+
     public async void LoadData()
     {
         try
         {
+            IsRefreshing = true;
             var result = await _dataRepository.GetDeliveredShipmentsAsync();
 
-            Shipments = new ObservableCollection<DeliveredShipmentModel>();
-            var filtered = result.GroupBy(r => new { r.ShipmentNo, r.CustomerName, r.CustomerId, r.DateShipped })
+            var filtered = result.GroupBy(r => new { r.ShipmentNo, r.CustomerName, r.CustomerId, r.DateShipped, r.IsDirty })
                   .Select(r =>
                     new DeliveredShipmentModel()
                     {
                         ShipmentNo = r.Key.ShipmentNo,
                         CustomerId = r.Key.CustomerId,
                         CustomerName = r.Key.CustomerName,
-                        DateShipped = r.Key.DateShipped
+                        DateShipped = r.Key.DateShipped,
+                        IsDirty = r.Key.IsDirty
                     }).ToList();
-
+            Shipments.Clear();
             filtered.ForEach(f => Shipments.Add(f));
+            IsRefreshing = false;
         }
         catch { }
     }

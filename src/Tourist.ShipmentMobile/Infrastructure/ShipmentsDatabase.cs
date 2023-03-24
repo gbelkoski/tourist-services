@@ -103,7 +103,8 @@ public class ShipmentsDatabase
             SELECT  [ShipmentLineItem].[ShipmentNo],
                     [ShipmentLineItem].[DateShipped],
                     [ShipmentLineItem].[CustomerId],
-                    [Customer].[Name] as CustomerName
+                    [Customer].[Name] as CustomerName,
+                    [ShipmentLineItem].[IsDirty]
             FROM [ShipmentLineItem]
             INNER JOIN [Customer]
             ON [ShipmentLineItem].[CustomerId] = [Customer].[Id]
