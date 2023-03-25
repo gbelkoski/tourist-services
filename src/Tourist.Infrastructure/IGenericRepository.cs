@@ -1,7 +1,4 @@
-﻿using System;
-using Tourist.Domain;
-
-namespace Tourist.Infrastructure;
+﻿namespace Tourist.Infrastructure;
 public interface IGenericRepository<T> where T : class
 {
     Task<T> Insert(T model);

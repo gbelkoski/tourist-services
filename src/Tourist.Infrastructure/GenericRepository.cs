@@ -1,5 +1,4 @@
-﻿using System;
-using SQLite;
+﻿using SQLite;
 
 namespace Tourist.Infrastructure;
 public class GenericRepository<T> : IGenericRepository<T> where T : class

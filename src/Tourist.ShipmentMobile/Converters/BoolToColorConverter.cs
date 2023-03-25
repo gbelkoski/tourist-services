@@ -1,10 +1,8 @@
-﻿using System;
-using System.Globalization;
+﻿using System.Globalization;
 
 namespace Tourist.ShipmentMobile.Converters;
 public class BoolToColorConverter : IValueConverter
 {
-    #region IValueConverterImplementation
     public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
     {
         Color controlEnabledColor = new Color();
@@ -41,16 +39,15 @@ public class BoolToColorConverter : IValueConverter
             return controlEnabledColor;
 
         }
-        catch (NotSupportedException e)
+        catch (NotSupportedException)
         {
             return controlEnabledColor;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return controlEnabledColor;
         }
     }
 
     public object ConvertBack(object v, Type tt, object p, CultureInfo c) => null;
-    #endregion
 }

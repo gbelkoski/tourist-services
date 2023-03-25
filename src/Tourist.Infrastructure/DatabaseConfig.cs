@@ -1,8 +1,5 @@
-﻿using System;
-namespace Tourist.Infrastructure
+﻿namespace Tourist.Infrastructure;
+public class DatabaseConfig
 {
-    public class DatabaseConfig
-    {
-        public string Database { get; set; }
-    }
+    public string Database { get; set; }
 }

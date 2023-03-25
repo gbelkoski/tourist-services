@@ -1,5 +1,4 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 
 namespace Tourist.ShipmentMobile.ViewModels;
 public class ManageSettingsViewModel : BaseViewModel
@@ -22,7 +21,7 @@ public class ManageSettingsViewModel : BaseViewModel
         ApiBaseUrl = Preferences.Default.Get(ApiBaseUrlKey, "http://cleanex.kreditinfo.mk");
 
         SaveCommand = new Command(
-        execute: async () =>
+        execute: () =>
         {
             Preferences.Set(ApiBaseUrlKey, ApiBaseUrl);
         });

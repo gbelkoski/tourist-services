@@ -7,8 +7,6 @@ using Tourist.Web.Api.Handlers;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
 // configure basic authentication 
 builder.Services.AddAuthentication("BasicAuthentication")
@@ -23,11 +21,6 @@ builder.Services.AddTransient<IGenericRepository<ShipmentLineItem>, ShipmentRepo
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
-// TO DO: Move to extension method
-//SqlMapper.AddTypeHandler(new DateTimeOffsetHandler());
-//SqlMapper.AddTypeHandler(new GuidHandler());
-//SqlMapper.AddTypeHandler(new TimeSpanHandler());
 
 builder.Host.ConfigureServices((host, services) =>
 {
