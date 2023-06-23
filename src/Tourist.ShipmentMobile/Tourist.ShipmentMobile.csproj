@@ -80,7 +80,6 @@
 	</ItemGroup>
 	<ItemGroup>
 	  <Folder Include="Infrastructure\" />
-	  <Folder Include="Views\" />
 	  <Folder Include="Views\Admin\" />
 	  <Folder Include="Jobs\" />
 	  <Folder Include="Platforms\Android\Resources\xml\" />
@@ -117,6 +116,7 @@
 	  <None Include="Views\CustomerPickerPage.xaml" />
 	  <None Include="Views\ShipmentDetailsPage.xaml" />
 	  <None Include="Views\ShipmentsDeliveredPage.xaml" />
+    <None Include="Views\AddShipmentLineItemView.xaml" />
 	  <None Include="App.xaml" />
 	  <None Include="AppShell.xaml" />
 	  <None Include="MainPage.xaml" />
@@ -140,5 +140,13 @@
 	  <BundleResource Include="Resources\Images\*" />
 	  <BundleResource Include="**/*" />
 	  <BundleResource Include="Resources\Images\*" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Remove="Views\AddShipmentLineItemPage.xaml" />
+	</ItemGroup>
+	<ItemGroup>
+	  <Compile Update="Views\AddShipmentLineItemPage.xaml.cs">
+	    <DependentUpon>AddShipmentLineItemPage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 </Project>

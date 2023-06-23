@@ -24,6 +24,7 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
                     Item item = new Item()
                     {
                         Id = int.Parse(Id),
+                        Code = Code,
                         Name = Name
                     };
                     await dataRepository.SaveItemAsync(item);
@@ -33,6 +34,7 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
                 {
                     var item = await dataRepository.GetItemAsync(itemId);
                     item.Name = Name;
+                    item.Code = Code;
                     await dataRepository.UpdateItemAsync(item);
                 }
 
@@ -54,6 +56,18 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
             OnPropertyChanged("Id");
         }
     }
+
+    private string _code;
+    public string Code
+    {
+        get { return _code; }
+        set 
+        { 
+            _code = value;
+            OnPropertyChanged("Code");
+        }
+    }
+
 
     private string _name;
     public string Name
@@ -89,6 +103,7 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
         {
             var item = await _dataRepository.GetItemAsync(itemId);
             Id = item.Id.ToString();
+            Code = item.Code;
             Name = item.Name;
         }
     }

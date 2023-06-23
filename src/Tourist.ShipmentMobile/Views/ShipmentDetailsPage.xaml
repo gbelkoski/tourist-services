@@ -19,14 +19,25 @@
             <Label Text="Бр. испратница: " Grid.Row="1" HorizontalTextAlignment="End" FontSize="Medium"/>
             <Label Text="{Binding ShipmentNo}" Grid.Column="1" Grid.Row="1" Padding="20,0,0,0" FontSize="Medium"/>
         </Grid>
-        <Entry Placeholder="Баркод"
-            Text="{Binding Barcode}"
-            FontSize="26"
-            MaxLength="13"
-            Keyboard="Numeric"
-            ReturnCommand="{Binding BarcodeEnteredCommand}"
-            x:Name="txtBarcode"
-            />
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Entry Placeholder="Баркод"
+                Text="{Binding Barcode}"
+                FontSize="26"
+                MaxLength="13"
+                Keyboard="Numeric"
+                ReturnCommand="{Binding BarcodeEnteredCommand}"
+                x:Name="txtBarcode"
+                />
+            <ImageButton Source="plus.png"
+                         Grid.Column="1"
+                         WidthRequest="30"   
+                         Command="{Binding Path = AddLineItemCommand}" />
+        </Grid>
+
         <ListView x:Name="lineItemsList"
                   ItemsSource="{Binding ShipmentItems}"
                   Margin="10,30,0,30"

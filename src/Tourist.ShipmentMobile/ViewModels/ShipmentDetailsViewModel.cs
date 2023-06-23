@@ -15,15 +15,15 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
         BarcodeEnteredCommand = new Command(
             execute: async () =>
             {
-                if(Barcode.Length!=13)
+                if(Barcode.Length != 13)
                 {
                     await Application.Current.MainPage.DisplayAlert("Грешка", "Невалиден формат на баркод.", "OK");
                     return;
                 }
-                var itemId = GetItemId(Barcode);
+                var itemCode = GetItemCode(Barcode);
                 var weight = GetWeight(Barcode);
 
-                var item = await _dataRepository.GetItemAsync(itemId);
+                var item = await _dataRepository.GetItemAsync(itemCode);
                 if(item == null)
                 {
                     await Application.Current.MainPage.DisplayAlert("Грешка", "Артиклот/услугата не постои.", "OK");
@@ -42,7 +42,7 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                     Barcode = Barcode,
                     ShipmentNo = ShipmentNo,
                     CustomerId = SelectedCustomerId,
-                    ItemId = itemId,
+                    ItemId = item.Id,
                     DateCreated = DateTime.Now,
                     Weight = weight,
                     IsDirty = true
@@ -55,6 +55,12 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
                     Weight = weight
                 });
                 Barcode = string.Empty;
+            });
+        
+        AddLineItemCommand = new Command(
+            execute: async () => 
+            {
+                await Shell.Current.GoToAsync($"//mainpage//shipmentdetails//addshipmentlineitem?shipmentNo={ShipmentNo}&customerId={SelectedCustomerId}");
             });
 
         DeleteLineItemCommand = new Command(
@@ -84,6 +90,8 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
     }
 
     public ICommand BarcodeEnteredCommand { private set; get; }
+
+    public ICommand AddLineItemCommand { private set; get; }
 
     public ICommand DeleteLineItemCommand { private set; get; }
 
@@ -177,10 +185,10 @@ public class ShipmentDetailsViewModel : BaseViewModel, IQueryAttributable
         return int.Parse(customerString);
     }
 
-    private int GetItemId(string barcode)
+    private string GetItemCode(string barcode)
     {
         string itemString = barcode.Substring(6, 2);
-        return int.Parse(itemString);
+        return itemString;
     }
 
     private decimal GetWeight(string barcode)

@@ -1,19 +1,18 @@
-
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29613.14
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.Infrastructure", "src\Tourist.Infrastructure\Tourist.Infrastructure.csproj", "{FB706DF9-88D3-4A7F-B506-50690DF912DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourist.Infrastructure", "src\Tourist.Infrastructure\Tourist.Infrastructure.csproj", "{FB706DF9-88D3-4A7F-B506-50690DF912DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.Domain", "src\Tourist.Domain\Tourist.Domain.csproj", "{0F080201-0443-4C59-9475-374468AC7579}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourist.Domain", "src\Tourist.Domain\Tourist.Domain.csproj", "{0F080201-0443-4C59-9475-374468AC7579}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.Application", "src\Tourist.Application\Tourist.Application.csproj", "{24012A01-9358-4C65-955D-653A1E933373}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourist.Application", "src\Tourist.Application\Tourist.Application.csproj", "{24012A01-9358-4C65-955D-653A1E933373}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.Web.Api", "src\Tourist.Web.Api\Tourist.Web.Api.csproj", "{A30A118E-9351-4502-80D2-E205682670B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourist.Web.Api", "src\Tourist.Web.Api\Tourist.Web.Api.csproj", "{A30A118E-9351-4502-80D2-E205682670B8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9406CF8A-3E84-4CAE-A8BA-93954B356489}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tourist.ShipmentMobile", "src\Tourist.ShipmentMobile\Tourist.ShipmentMobile.csproj", "{968E6DE3-266D-4683-8C52-A0674664592B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourist.ShipmentMobile", "src\Tourist.ShipmentMobile\Tourist.ShipmentMobile.csproj", "{968E6DE3-266D-4683-8C52-A0674664592B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,20 +38,21 @@ Global
 		{A30A118E-9351-4502-80D2-E205682670B8}.Release|Any CPU.Build.0 = Release|Any CPU
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{968E6DE3-266D-4683-8C52-A0674664592B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {48139575-7BFB-461A-A1E3-1B48430D163B}
-	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A30A118E-9351-4502-80D2-E205682670B8} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 		{FB706DF9-88D3-4A7F-B506-50690DF912DE} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 		{0F080201-0443-4C59-9475-374468AC7579} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 		{24012A01-9358-4C65-955D-653A1E933373} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
+		{A30A118E-9351-4502-80D2-E205682670B8} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 		{968E6DE3-266D-4683-8C52-A0674664592B} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {48139575-7BFB-461A-A1E3-1B48430D163B}
 	EndGlobalSection
 EndGlobal

@@ -15,6 +15,7 @@ public partial class AppShell : Shell
     {
         Routes.Add("customerpicker", typeof(CustomerPickerPage));
         Routes.Add("shipmentdetails", typeof(ShipmentDetailsPage));
+        Routes.Add("addshipmentlineitem", typeof(AddShipmentLineItemPage));
         Routes.Add("deliveredshipments", typeof(DeliveredShipmentsPage));
         Routes.Add("deliveredshipmentdetails", typeof(DeliveredShipmentDetailsPage));
 

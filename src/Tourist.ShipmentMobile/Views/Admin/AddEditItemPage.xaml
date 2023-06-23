@@ -9,6 +9,7 @@
                Text="{Binding Id}"
                MaxLength="2" IsEnabled="{Binding IsNew}"
                Keyboard="Numeric"/>
+        <Entry Placeholder="Код" x:Name="txtCode" Text="{Binding Code}"/>
         <Entry Placeholder="Име" x:Name="txtName" Text="{Binding Name}"/>
         <Button Text="Зачувај" Command="{Binding SaveItemCommand}" />
     </VerticalStackLayout>

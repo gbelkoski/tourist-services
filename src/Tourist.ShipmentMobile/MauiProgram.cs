@@ -4,6 +4,7 @@ using Tourist.ShipmentMobile.Infrastructure;
 using Tourist.ShipmentMobile.Jobs;
 using Plugin.Fingerprint;
 using Plugin.Fingerprint.Abstractions;
+using Tourist.ShipmentMobile.ViewModels;
 
 namespace Tourist.ShipmentMobile;
 public static class MauiProgram
@@ -45,6 +46,7 @@ public static class MauiProgram
 	{
 		mauiAppBuilder.Services.AddTransient<ViewModels.CustomerPickerViewModel>();
 		mauiAppBuilder.Services.AddTransient<ViewModels.ShipmentDetailsViewModel>();
+		mauiAppBuilder.Services.AddTransient<ViewModels.AddShipmentLineItemViewModel>();
 		mauiAppBuilder.Services.AddTransient<ViewModels.DeliveredShipmentsViewModel>();
         mauiAppBuilder.Services.AddTransient<ViewModels.DeliveredShipmentDetailsViewModel>();
         mauiAppBuilder.Services.AddTransient<ViewModels.ManageCustomersViewModel>();
@@ -60,6 +62,7 @@ public static class MauiProgram
 	{
 		mauiAppBuilder.Services.AddTransient<CustomerPickerPage>();
 		mauiAppBuilder.Services.AddTransient<ShipmentDetailsPage>();
+		mauiAppBuilder.Services.AddTransient<AddShipmentLineItemPage>();
         mauiAppBuilder.Services.AddTransient<DeliveredShipmentsPage>();
         mauiAppBuilder.Services.AddTransient<DeliveredShipmentDetailsPage>();
         mauiAppBuilder.Services.AddTransient<ManageCustomersPage>();

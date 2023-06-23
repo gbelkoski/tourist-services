@@ -24,6 +24,7 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
                     Customer customer = new Customer()
                     {
                         Id = int.Parse(Id),
+                        Code = Code,
                         Name = Name,
                         Address = Address
                     };
@@ -33,6 +34,7 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
                 else
                 {
                     var customer = await dataRepository.GetCustomerAsync(customerId);
+                    customer.Code = Code;
                     customer.Name = Name;
                     customer.Address = Address;
                     try
@@ -60,6 +62,18 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
             OnPropertyChanged("Id");
         }
     }
+
+    private string _code;
+    public string Code
+    {
+        get { return _code; }
+        set 
+        { 
+            _code = value;
+            OnPropertyChanged("Code");
+        }
+    }
+
 
     private string _name;
     public string Name
@@ -106,6 +120,7 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
         {
             var customer = await _dataRepository.GetCustomerAsync(customerId);
             Id = customer.Id.ToString();
+            Code = customer.Code;
             Name = customer.Name;
             Address = customer.Address;
         }

@@ -129,6 +129,12 @@ public class ShipmentsDatabase
         return await _dbConnection.Table<Item>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
+    public async Task<Item> GetItemAsync(string code)
+    {
+        await Init();
+        return await _dbConnection.Table<Item>().Where(i => i.Code == code).FirstOrDefaultAsync();
+    }
+
     public async Task<ShipmentLineItem> GetShipmentLineItemAsync(int id)
     {
         return await _dbConnection.Table<ShipmentLineItem>().Where(i => i.Id == id).FirstOrDefaultAsync();

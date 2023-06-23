@@ -10,6 +10,7 @@
                MaxLength="6"
                Text="{Binding Id}"
                Keyboard="Numeric"/>
+        <Entry Placeholder="Код" x:Name="txtCode" Text="{Binding Code}"/>
         <Entry Placeholder="Име" x:Name="txtName" Text="{Binding Name}"/>
         <Entry Placeholder="Адреса" x:Name="txtAddress" Text="{Binding Address}"/>
         <Button Text="Зачувај" Command="{Binding SaveCustomerCommand}" />
