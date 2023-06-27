@@ -5,7 +5,7 @@ public static class Constants
 {
     public static readonly string DatabaseFilename = "CleanexDb.db3";
 
-    public static string TouristApi = Preferences.Default.Get("ApiBaseUrl", "http://192.168.86.26:5000");
+    public static string TouristApi = Preferences.Default.Get("ApiBaseUrl", "http://cleanex.kreditinfo.mk");
 
     public const SQLite.SQLiteOpenFlags Flags =
         // open the database in read/write mode
