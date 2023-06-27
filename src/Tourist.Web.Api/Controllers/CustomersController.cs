@@ -19,6 +19,7 @@ public class CustomersController : ControllerBase
         _queryDispatcher = queryDispatcher;
     }
 
+    [HttpPost]
     public async Task Create(CreateCustomerCommand @command)
     {
         await _commandDispatcher.SendAsync(@command);

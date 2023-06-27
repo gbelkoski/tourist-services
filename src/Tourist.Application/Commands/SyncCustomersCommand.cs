@@ -28,6 +28,7 @@ public class SyncCustomersCommandHandler : ICommandHandler<SyncCustomersCommand>
                 await _customerRepository.Insert(new Customer()
                 {
                     Id = customer.Id,
+                    Code = customer.Code,
                     Name = customer.Name,
                     Address = customer.Address,
                     IsDeleted = customer.IsDeleted
@@ -35,6 +36,7 @@ public class SyncCustomersCommandHandler : ICommandHandler<SyncCustomersCommand>
             }
             else
             {
+                dbCustomer.Code = customer.Code;
                 dbCustomer.Name = customer.Name;
                 dbCustomer.Address = customer.Address;
                 dbCustomer.IsDeleted = customer.IsDeleted;

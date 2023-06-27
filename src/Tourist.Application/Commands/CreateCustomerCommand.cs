@@ -6,6 +6,8 @@ namespace Tourist.Application.Commands;
 
 public class CreateCustomerCommand : ICommand
 {
+    [JsonPropertyName("Id")]
+    public int Id { get; set; }
     [JsonPropertyName("Name")]
     public string Name { get; set; }
     [JsonPropertyName("Address")]
@@ -25,6 +27,7 @@ public class CreateCustomerCommandHandler : ICommandHandler<CreateCustomerComman
     {
         await _customerRepository.Insert(new Customer()
         {
+            Id = command.Id,
             Name = command.Name, 
             Address = command.Address 
         });

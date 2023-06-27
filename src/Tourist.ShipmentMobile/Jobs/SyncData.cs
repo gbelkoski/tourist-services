@@ -37,6 +37,25 @@ public class SyncDataJob
 
     private async Task DoSync()
     {
+        await SyncItems();
+        await SyncCustomers();
+        await SyncShipments();
+    }
+
+    private async Task SyncItems()
+    {
+        var serverItems = await _touristApiClient.GetItems();
+        var localItems = await _dataRepository.GetItemsAsync();
+
+        await _dataRepository.DeleteItemAsync(localItems.FirstOrDefault(a=>a.Code == null));
+        localItems.RemoveAll(a => a.Code == null);
+
+        var missingItems = serverItems.Where(s => !localItems.Any(l => l.Code == s.Code));
+        foreach( var item in missingItems )
+        {
+            await _dataRepository.SaveItemAsync(item);
+        }
+
         var itemsToSync = await _dataRepository.GetDirtyItems();
         if (itemsToSync.Any())
         {
@@ -49,12 +68,24 @@ public class SyncDataJob
                 });
             }
         }
+    }
+
+    private async Task SyncCustomers()
+    {
+        var serverCustomers = await _touristApiClient.GetCustomers();
+        var localCustomers = await _dataRepository.GetCustomersAsync();
+
+        var missingCustomers = serverCustomers.Where(s => !localCustomers.Any(l => l.Code == s.Code));
+        foreach (var customer in missingCustomers)
+        {
+            await _dataRepository.SaveCustomerAsync(customer);
+        }
 
         var customersToSync = await _dataRepository.GetDirtyCutomers();
-        if(customersToSync.Any())
+        if (customersToSync.Any())
         {
             bool success = await _touristApiClient.PostSyncCustomers(customersToSync);
-            if(success)
+            if (success)
             {
                 customersToSync.ForEach(async c =>
                 {
@@ -62,7 +93,10 @@ public class SyncDataJob
                 });
             }
         }
+    }
 
+    private async Task SyncShipments()
+    {
         var shipmentsToSync = await _dataRepository.GetDirtyShipmentAsync();
         if (shipmentsToSync.Any())
         {

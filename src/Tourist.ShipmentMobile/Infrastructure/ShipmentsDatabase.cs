@@ -123,6 +123,11 @@ public class ShipmentsDatabase
         return await _dbConnection.Table<Customer>().Where(i => i.Id == id).FirstOrDefaultAsync();
     }
 
+    public async Task<Customer> GetCustomerAsync(string code)
+    {
+        return await _dbConnection.Table<Customer>().Where(i => i.Code == code).FirstOrDefaultAsync();
+    }
+
     public async Task<Item> GetItemAsync(int id)
     {
         await Init();
@@ -167,6 +172,11 @@ public class ShipmentsDatabase
     public async Task<int> UpdateItemAsync(Item item)
     {
         return await Update(item);
+    }
+
+    public async Task<int> DeleteItemAsync(Item item)
+    {
+        return await _dbConnection.DeleteAsync(item);
     }
 
     public async Task<int> SaveShipmentLineItemAsync(ShipmentLineItem item)

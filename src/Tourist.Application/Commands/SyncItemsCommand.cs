@@ -26,12 +26,14 @@ public class SyncItemsCommandHandler : ICommandHandler<SyncItemsCommand>
                 await _itemRepository.Insert(new Item()
                 {
                     Id = item.Id,
+                    Code = item.Code,
                     Name = item.Name,
                     IsDeleted = item.IsDeleted
                 });
             }
             else
             {
+                dbItem.Code = item.Code;
                 dbItem.Name = item.Name;
                 dbItem.IsDeleted = item.IsDeleted;
                 await _itemRepository.Update(dbItem);

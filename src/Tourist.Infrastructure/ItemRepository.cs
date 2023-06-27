@@ -19,7 +19,7 @@ public class ItemRepository : IGenericRepository<Item>
 
     public async Task<List<Item>> SelectAll()
     {
-        return (await _dbConnection.QueryAsync<Item>("SELECT Name FROM Item;")).ToList();
+        return (await _dbConnection.QueryAsync<Item>("SELECT * FROM Item;")).ToList();
     }
 
     public async Task<Item> SelectById(int id)

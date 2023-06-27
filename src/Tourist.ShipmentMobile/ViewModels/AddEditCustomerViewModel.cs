@@ -2,6 +2,7 @@
 using System.Windows.Input;
 using Tourist.Domain;
 using Tourist.ShipmentMobile.Infrastructure;
+using static Android.Content.ClipData;
 
 namespace Tourist.ShipmentMobile.ViewModels;
 public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
@@ -18,7 +19,13 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
                     var cust = await _dataRepository.GetCustomerAsync(int.Parse(Id));
                     if(cust != null)
                     {
-                        await Application.Current.MainPage.DisplayAlert("Грешка", "Постои клиенти со исто ID.", "OK");
+                        await Application.Current.MainPage.DisplayAlert("Грешка", "Постои клиент со исто ID.", "OK");
+                        return;
+                    }
+                    cust = await _dataRepository.GetCustomerAsync(Code);
+                    if (cust != null)
+                    {
+                        await Application.Current.MainPage.DisplayAlert("Грешка", "Постои клиент со ист код.", "OK");
                         return;
                     }
                     Customer customer = new Customer()

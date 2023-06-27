@@ -16,9 +16,10 @@ public class CustomerRepository : IGenericRepository<Customer>
         await _dbConnection.InsertAsync(model);
         return model;
     }
+
     public async Task<List<Customer>> SelectAll()
     {
-        return (await _dbConnection.QueryAsync<Customer>("SELECT Name, Address FROM Customer;")).ToList();
+        return (await _dbConnection.QueryAsync<Customer>("SELECT * FROM Customer;")).ToList();
     }
 
     public async Task<Customer> SelectById(int id)

@@ -19,16 +19,16 @@ public class SyncController : ControllerBase
 
     [HttpPost(Name = "items")]
     [Route("items")]
-    public async Task SyncItems(SyncItemsCommand command)
+    public async Task SyncItems(SyncItemsCommand @command)
     {
-        await _commandDispatcher.SendAsync(command);
+        await _commandDispatcher.SendAsync(@command);
     }
 
     [HttpPost(Name = "customers")]
     [Route("customers")]
-    public async Task SyncCustomers(SyncCustomersCommand command)
+    public async Task SyncCustomers(SyncCustomersCommand @command)
     {
-        await _commandDispatcher.SendAsync(command);
+        await _commandDispatcher.SendAsync(@command);
     }
 
     [HttpPost(Name = "shipments")]
