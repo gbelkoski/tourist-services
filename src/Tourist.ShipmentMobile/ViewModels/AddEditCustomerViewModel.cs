@@ -1,8 +1,6 @@
-﻿using System;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using Tourist.Domain;
 using Tourist.ShipmentMobile.Infrastructure;
-using static Android.Content.ClipData;
 
 namespace Tourist.ShipmentMobile.ViewModels;
 public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
@@ -14,6 +12,11 @@ public class AddEditCustomerViewModel : BaseViewModel, IQueryAttributable
         SaveCustomerCommand = new Command(
             execute: async () =>
             {
+                if(string.IsNullOrWhiteSpace(Id) || string.IsNullOrWhiteSpace(Code) || string.IsNullOrWhiteSpace(Name))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Грешка", "ID, Код и Име се задолжителни полиња.", "OK");
+                    return;
+                }
                 if(IsNew)
                 {
                     var cust = await _dataRepository.GetCustomerAsync(int.Parse(Id));

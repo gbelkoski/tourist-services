@@ -13,6 +13,11 @@ public class AddEditItemViewModel : BaseViewModel, IQueryAttributable
         SaveItemCommand = new Command(
             execute: async () =>
             {
+                if (string.IsNullOrWhiteSpace(Id) || string.IsNullOrWhiteSpace(Code) || string.IsNullOrWhiteSpace(Name))
+                {
+                    await Application.Current.MainPage.DisplayAlert("Грешка", "ID, Код и Име се задолжителни полиња.", "OK");
+                    return;
+                }
                 if (IsNew)
                 {
                     var exItem = await _dataRepository.GetItemAsync(int.Parse(Id));
