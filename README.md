@@ -23,5 +23,5 @@ To publish to linux server use the following steps:
 
 ## Deploy the android mobile app
 1. Update the version and/or version code in AndroidManifest.xml and commit the changes
-2. Run the following command `dotnet build -f net6.0-android`
-3. Get the apk from  <app-root-dir>/bin/release/net6.0-android/com.companyname.appname-Signed.apk and upload it to appcenter
+2. Run the following command `dotnet build -f net7.0-android`
+3. Get the apk from  <app-root-dir>/bin/release/net7.0-android/com.companyname.appname-Signed.apk and upload it to appcenter
