@@ -2,6 +2,8 @@
 using System.Timers;
 using Timer = System.Timers.Timer;
 using Tourist.ShipmentMobile.Infrastructure;
+using Microsoft.AppCenter.Crashes;
+
 namespace Tourist.ShipmentMobile.Jobs;
 public class SyncDataJob
 {
@@ -37,9 +39,32 @@ public class SyncDataJob
 
     private async Task DoSync()
     {
-        await SyncItems();
-        await SyncCustomers();
-        await SyncShipments();
+        try
+        {
+            await SyncItems();
+        }
+        catch (Exception ex)
+        {
+            Crashes.TrackError(ex);
+        }
+
+        try
+        {
+            await SyncCustomers();
+        }
+        catch (Exception ex)
+        {
+            Crashes.TrackError(ex);
+        }
+
+        try
+        {
+            await SyncShipments();
+        }
+        catch (Exception ex)
+        {
+            Crashes.TrackError(ex);
+        }
     }
 
     private async Task SyncItems()
@@ -47,10 +72,7 @@ public class SyncDataJob
         var serverItems = await _touristApiClient.GetItems();
         var localItems = await _dataRepository.GetItemsAsync();
 
-        await _dataRepository.DeleteItemAsync(localItems.FirstOrDefault(a=>a.Code == null));
-        localItems.RemoveAll(a => a.Code == null);
-
-        var missingItems = serverItems.Where(s => !localItems.Any(l => l.Code == s.Code));
+        var missingItems = serverItems.Where(s => !localItems.Any(l => l.Id == s.Id));
         foreach( var item in missingItems )
         {
             await _dataRepository.SaveItemAsync(item);
@@ -75,7 +97,10 @@ public class SyncDataJob
         var serverCustomers = await _touristApiClient.GetCustomers();
         var localCustomers = await _dataRepository.GetCustomersAsync();
 
-        var missingCustomers = serverCustomers.Where(s => !localCustomers.Any(l => l.Code == s.Code));
+        await _dataRepository.DeleteCustomerAsync(localCustomers.FirstOrDefault(a => a.Code == null));
+        localCustomers.RemoveAll(a => a.Code == null);
+
+        var missingCustomers = serverCustomers.Where(s => !localCustomers.Any(l => l.Id == s.Id));
         foreach (var customer in missingCustomers)
         {
             await _dataRepository.SaveCustomerAsync(customer);

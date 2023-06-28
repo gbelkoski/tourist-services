@@ -176,6 +176,8 @@ public class ShipmentsDatabase
 
     public async Task<int> DeleteItemAsync(Item item)
     {
+        if (item == null) return -1;
+
         return await _dbConnection.DeleteAsync(item);
     }
 
@@ -202,6 +204,8 @@ public class ShipmentsDatabase
 
     public async Task<int> DeleteCustomerAsync(Customer item)
     {
+        if (item == null) return -1;
+
         item.IsDeleted = true;
         item.IsDirty = true;
         return await _dbConnection.DeleteAsync(item);
@@ -209,6 +213,7 @@ public class ShipmentsDatabase
 
     public async Task<int> DeleteShipmentLineItemAsync(ShipmentLineItem item)
     {
+        if (item == null) return -1;
         return await _dbConnection.DeleteAsync(item);
     }
 
