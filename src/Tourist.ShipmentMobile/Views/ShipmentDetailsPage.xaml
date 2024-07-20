@@ -70,8 +70,20 @@
             </ListView.ItemTemplate>
         </ListView>
 
+ 
         <Button Text="Печати испратница"
+                Clicked="Print_Clicked"
                 Command="{Binding PrintShipmentCommand}"
                 HorizontalOptions="FillAndExpand"/>
+
+        <!--<WebView x:Name="webView" />-->
+
+        <WebView x:Name="shipmentPrintView">
+            <WebView.Source>
+                <HtmlWebViewSource Html="{Binding ShipmentHtml}">
+                </HtmlWebViewSource>
+            </WebView.Source>
+        </WebView>
+
     </VerticalStackLayout>
 </ContentPage>

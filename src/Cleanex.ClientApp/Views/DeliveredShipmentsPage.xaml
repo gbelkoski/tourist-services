@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cleanex.ClientApp.DeliveredShipmentsPage"
+             xmlns:converters="clr-namespace:Cleanex.ClientApp.Converters"
+             Title="Испорачани">
+    <ContentPage.Resources>
+        <converters:BoolToColorConverter x:Key="colorConverter"/>
+    </ContentPage.Resources>
+    <ListView ItemsSource="{Binding Shipments}"
+              RowHeight="100"
+              IsPullToRefreshEnabled="True"
+              RefreshCommand="{Binding RefreshShipmentsCommand}"
+              IsRefreshing="{Binding IsRefreshing}"
+              SelectionMode="None"
+              ItemTapped="ListView_ItemTapped">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <Grid Padding="10"
+                          BackgroundColor="{Binding Path=IsDirty, Converter={StaticResource colorConverter}, ConverterParameter='#ffc0cb'}">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label Text="{Binding ShipmentNo}"
+                               FontSize="26"
+                               Padding="20,0,0,0"/>
+
+                        <Label
+                            Grid.Column="1"
+                            Text="{Binding CustomerName}"
+                            FontAttributes="Italic"
+                            VerticalOptions="End"
+                            FontSize="26" />
+
+                        <Label Grid.Row="1"
+                               Grid.ColumnSpan="2"
+                               Text="{Binding DateShipped, StringFormat='{}{0:dd.MM.yyyy hh:mm}'}"
+                               Padding="20,0,0,0"/>
+
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>

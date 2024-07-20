@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Cleanex.ClientApp.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Cleanex.ClientApp"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Евиденција на испорака"
+        Route="mainpage"
+        ContentTemplate="{DataTemplate local:MainPage}">
+        <ShellContent
+            Title="customer_picker"
+            Route="customerpicker"
+            ContentTemplate="{DataTemplate local:CustomerPickerPage}" >
+        </ShellContent>
+    </ShellContent>
+
+</Shell>

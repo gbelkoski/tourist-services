@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cleanex.ClientApp.AddShipmentLineItemPage"
+             Title="AddShipmentLineItemPage"
+             Shell.PresentationMode="Modal">
+    <VerticalStackLayout>
+
+        <Entry Placeholder="Код на артикл"
+                Text="{Binding ItemCode}"
+                FontSize="26"
+                MaxLength="5"
+                Keyboard="Numeric"
+                x:Name="txtItemCode"/>
+
+        <Entry Placeholder="Тежина"
+                Text="{Binding Weight}"
+                FontSize="26"
+                MaxLength="6"
+                Keyboard="Numeric"
+                x:Name="txtWeight"/>
+
+        <Button Text="OK"
+                Command="{Binding OKCommand}"
+                HorizontalOptions="FillAndExpand"
+                Margin="0,60,0,0"/>
+    </VerticalStackLayout>
+</ContentPage>

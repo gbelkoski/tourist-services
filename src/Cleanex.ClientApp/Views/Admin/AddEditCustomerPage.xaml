@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cleanex.ClientApp.AddEditCustomerPage"
+             Title="Нов клиент">
+    <VerticalStackLayout Spacing="20" Margin="10">
+        <Entry Placeholder="ID"
+               x:Name="txtId"
+               IsEnabled="{Binding IsNew}"
+               MaxLength="6"
+               Text="{Binding Id}"
+               Keyboard="Numeric"/>
+        <Entry Placeholder="Код" x:Name="txtCode" Text="{Binding Code}"/>
+        <Entry Placeholder="Име" x:Name="txtName" Text="{Binding Name}"/>
+        <Entry Placeholder="Адреса" x:Name="txtAddress" Text="{Binding Address}"/>
+        <Button Text="Зачувај" Command="{Binding SaveCustomerCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cleanex.ClientApp.MainPage">
+
+    <FlexLayout Direction="Row"
+                Margin="0,10,0,10"
+                Wrap="Wrap">
+        <Button Text="Нова испратница"
+                x:Name="btnNew"
+                Clicked="btnNewShipment_Clicked"
+                FontSize="26"
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1" />
+        <Button Text="Испорачани"
+                x:Name="btnDelivered"
+                Clicked="btnDelivered_Clicked"
+                FontSize="26"
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
+        <Button Text="Администрација"
+                x:Name="btnAdmin"
+                Clicked="btnAdmin_Clicked"
+                FontSize="26"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"
+                FlexLayout.Grow="1"/>
+    </FlexLayout>
+
+</ContentPage>

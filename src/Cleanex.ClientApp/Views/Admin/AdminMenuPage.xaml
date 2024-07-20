@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cleanex.ClientApp.AdminMenuPage"
+             Title="Администрација">
+
+    <FlexLayout Direction="Row"
+                Margin="0,10,0,10"
+                Wrap="Wrap">
+        <Button Text="Клиенти"
+                x:Name="btnManageCustomers"
+                Clicked="btnManageCustomers_Clicked"
+                FontSize="26"
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
+
+        <Button Text="Артикли/услуги"
+                x:Name="btnManageItems"
+                Clicked="btnManageItems_Clicked"
+                FontSize="26"
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
+
+        <Button Text="Подесувања"
+                x:Name="btnManageSettings"
+                Clicked="btnManageSettings_Clicked"
+                FontSize="26"
+                FlexLayout.Grow="1"
+                BorderColor="AntiqueWhite"
+                BorderWidth="1"/>
+    </FlexLayout>
+
+</ContentPage>

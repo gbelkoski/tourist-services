@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Cleanex.ClientApp.AddEditItemPage"
+             Title="Нов артикл/услуга">
+    <VerticalStackLayout Spacing="20" Margin="10">
+        <Entry Placeholder="ID"
+               x:Name="txtId"
+               Text="{Binding Id}"
+               MaxLength="2" IsEnabled="{Binding IsNew}"
+               Keyboard="Numeric"/>
+        <Entry Placeholder="Код" x:Name="txtCode" Text="{Binding Code}"/>
+        <Entry Placeholder="Име" x:Name="txtName" Text="{Binding Name}"/>
+        <Button Text="Зачувај" Command="{Binding SaveItemCommand}" />
+    </VerticalStackLayout>
+</ContentPage>

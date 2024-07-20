@@ -14,6 +14,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9406CF8A-3E8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tourist.ShipmentMobile", "src\Tourist.ShipmentMobile\Tourist.ShipmentMobile.csproj", "{968E6DE3-266D-4683-8C52-A0674664592B}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cleanex.ClientApp", "src\Cleanex.ClientApp\Cleanex.ClientApp.csproj", "{83D407DF-D294-4D59-82A8-EE11782B2C36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,12 @@ Global
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{968E6DE3-266D-4683-8C52-A0674664592B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D407DF-D294-4D59-82A8-EE11782B2C36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{83D407DF-D294-4D59-82A8-EE11782B2C36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{83D407DF-D294-4D59-82A8-EE11782B2C36}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{83D407DF-D294-4D59-82A8-EE11782B2C36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{83D407DF-D294-4D59-82A8-EE11782B2C36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{83D407DF-D294-4D59-82A8-EE11782B2C36}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -51,6 +59,7 @@ Global
 		{24012A01-9358-4C65-955D-653A1E933373} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 		{A30A118E-9351-4502-80D2-E205682670B8} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 		{968E6DE3-266D-4683-8C52-A0674664592B} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
+		{83D407DF-D294-4D59-82A8-EE11782B2C36} = {9406CF8A-3E84-4CAE-A8BA-93954B356489}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {48139575-7BFB-461A-A1E3-1B48430D163B}
